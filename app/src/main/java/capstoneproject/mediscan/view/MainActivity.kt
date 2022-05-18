@@ -1,6 +1,7 @@
 package capstoneproject.mediscan.view
 
 import android.Manifest
+import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.BitmapFactory
@@ -11,10 +12,19 @@ import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import androidx.datastore.core.DataStore
+import androidx.datastore.preferences.core.Preferences
+import androidx.datastore.preferences.preferencesDataStore
+import androidx.lifecycle.ViewModelProvider
 import capstoneproject.mediscan.R
+import capstoneproject.mediscan.data.MainViewModel
+import capstoneproject.mediscan.data.ViewModelFactory
+import capstoneproject.mediscan.data.local.UserPreferences
 import capstoneproject.mediscan.databinding.ActivityMainBinding
 import capstoneproject.mediscan.helper.rotateBitmap
 import java.io.File
+
+private val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = "session")
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
@@ -49,6 +59,21 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        val viewModel = ViewModelProvider(this,
+            ViewModelFactory(UserPreferences.getInstance(dataStore)))[MainViewModel::class.java]
+        val isJustLogin = intent.getBooleanExtra(LOGIN_FLAG, false)
+
+        if(!isJustLogin){
+            viewModel.getToken().observe(this){
+                if(it.isEmpty()){
+                    startActivity(Intent(this, WelcomeActivity::class.java))
+                    finish()
+                }
+            }
+        }
+
+
+
         if (!allPermissionsGranted()) {
             ActivityCompat.requestPermissions(
                 this,
@@ -57,8 +82,13 @@ class MainActivity : AppCompatActivity() {
             )
         }
 
-        binding.buttonToCamera.setOnClickListener {startCameraX()}
-        binding.buttonToGallery.setOnClickListener {startGallery()}
+        binding.buttonToCamera.setOnClickListener { startCameraX() }
+        binding.buttonToGallery.setOnClickListener { startGallery() }
+        binding.logoutButton.setOnClickListener {
+            viewModel.deleteToken()
+            startActivity(Intent(this, WelcomeActivity::class.java))
+            finish()
+        }
     }
 
     private fun startCameraX() {
@@ -82,7 +112,7 @@ class MainActivity : AppCompatActivity() {
     override fun onRequestPermissionsResult(
         requestCode: Int,
         permissions: Array<String>,
-        grantResults: IntArray
+        grantResults: IntArray,
     ) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
         if (requestCode == REQUEST_CODE_PERMISSIONS) {
@@ -101,5 +131,6 @@ class MainActivity : AppCompatActivity() {
         const val CAMERA_X_RESULT = 200
         private val REQUIRED_PERMISSIONS = arrayOf(Manifest.permission.CAMERA)
         private const val REQUEST_CODE_PERMISSIONS = 10
+        const val LOGIN_FLAG = "LOGIN_FLAG"
     }
 }

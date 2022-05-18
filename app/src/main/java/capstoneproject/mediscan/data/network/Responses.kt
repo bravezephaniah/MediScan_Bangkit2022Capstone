@@ -1,4 +1,4 @@
-package capstoneproject.mediscan.network
+package capstoneproject.mediscan.data.network
 
 import com.google.gson.annotations.SerializedName
 
@@ -20,5 +20,8 @@ data class LoginResponse(
     val userId: Int? = null,
 
     @field:SerializedName("username")
-    val username: String? = null
+    val username: String? = null,
+
+    @field:SerializedName("status")
+    val status: String? = null
 )

@@ -55,4 +55,17 @@
             app:layout_constraintGuide_begin="300dp"
             android:orientation="horizontal" />
 
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            app:srcCompat="@drawable/baseline_logout_24"
+            android:id="@+id/logout_button"
+            android:focusable="true"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
+            android:contentDescription="@string/logout_desc" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

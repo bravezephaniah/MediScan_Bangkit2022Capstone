@@ -1,4 +1,4 @@
-package capstoneproject.mediscan.network
+package capstoneproject.mediscan.data.network
 
 import androidx.viewbinding.BuildConfig
 import okhttp3.OkHttpClient
