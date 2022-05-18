@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">MediScan</string>
+    <string name="camera_desc">Camera</string>
+    <string name="gallery_desc">Gallery</string>
+    <string name="captured_image_desc">Captured Image</string>
+    <string name="permission_denied">Permission Denied by User</string>
+    <string name="capture_image_desc">Capture Image</string>
+    <string name="switch_camera_desc">Switch Camera</string>
+    <string name="camera_launch_fail">Camera Failed to Launch</string>
+    <string name="success_takePhoto">Image Taken</string>
+    <string name="failed_takePhoto">Failed to Take Image</string>
+</resources>
