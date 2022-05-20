@@ -16,11 +16,11 @@ class MainViewModel(private val pref: UserPreferences): ViewModel() {
     private var _isLoading = MutableLiveData<Boolean>()
     val isLoading: LiveData<Boolean> = _isLoading
 
-    private var _registerResponse = MutableLiveData<RegisterResponse>()
-    val registerResponse: LiveData<RegisterResponse> = _registerResponse
-
-    private var _loginResponse = MutableLiveData<LoginResponse>()
-    val loginResponse: LiveData<LoginResponse> = _loginResponse
+//    private var _registerResponse = MutableLiveData<RegisterResponse>()
+//    val registerResponse: LiveData<RegisterResponse> = _registerResponse
+//
+//    private var _loginResponse = MutableLiveData<LoginResponse>()
+//    val loginResponse: LiveData<LoginResponse> = _loginResponse
 
     private var _isLoggedIn = MutableLiveData<Boolean>()
     val isLoggedIn: LiveData<Boolean> = _isLoggedIn
@@ -54,7 +54,7 @@ class MainViewModel(private val pref: UserPreferences): ViewModel() {
             ) {
                 _isLoading.value = false
                 if(response.isSuccessful){
-                    _registerResponse.value = response.body()
+//                    _registerResponse.value = response.body()
                     _isRegistered.value = true
                     Log.d(TAG, "onResponseSuccess: ${response.body()?.message} ${response.body()?.status}")
                 }else{
@@ -78,7 +78,7 @@ class MainViewModel(private val pref: UserPreferences): ViewModel() {
             override fun onResponse(call: Call<LoginResponse>, response: Response<LoginResponse>) {
                 _isLoading.value = false
                 if(response.isSuccessful){
-                    _loginResponse.value = response.body()
+//                    _loginResponse.value = response.body()
                     _isLoggedIn.value = true
                     response.body()?.accessToken?.let { saveToken(it) }
                     Log.d(TAG, "onResponseSuccess: Login Success")
