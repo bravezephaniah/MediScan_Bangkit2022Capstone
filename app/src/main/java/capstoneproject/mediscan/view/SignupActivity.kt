@@ -36,8 +36,8 @@ class SignupActivity : AppCompatActivity() {
             val password = binding.passwordSignupEdittext.text.toString()
 
             viewModel.registerUser(username, email, password)
-            viewModel.isRegistered.observe(this){
-                if(it){
+            viewModel.registerResponse.observe(this){
+                if(it.status == "success"){
                     Toast.makeText(this, getString(R.string.regist_success), Toast.LENGTH_SHORT).show()
                     finish()
                 }else{

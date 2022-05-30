@@ -16,17 +16,14 @@ class MainViewModel(private val pref: UserPreferences): ViewModel() {
     private var _isLoading = MutableLiveData<Boolean>()
     val isLoading: LiveData<Boolean> = _isLoading
 
-//    private var _registerResponse = MutableLiveData<RegisterResponse>()
-//    val registerResponse: LiveData<RegisterResponse> = _registerResponse
-//
-//    private var _loginResponse = MutableLiveData<LoginResponse>()
-//    val loginResponse: LiveData<LoginResponse> = _loginResponse
+    private var _registerResponse = MutableLiveData<RegisterResponse>()
+    val registerResponse: LiveData<RegisterResponse> = _registerResponse
+
+    private var _loginResponse = MutableLiveData<LoginResponse>()
+    val loginResponse: LiveData<LoginResponse> = _loginResponse
 
     private var _isLoggedIn = MutableLiveData<Boolean>()
     val isLoggedIn: LiveData<Boolean> = _isLoggedIn
-
-    private var _isRegistered = MutableLiveData<Boolean>()
-    val isRegistered: LiveData<Boolean> = _isRegistered
 
     fun getToken(): LiveData<String>{
         return pref.getToken().asLiveData()
@@ -54,18 +51,15 @@ class MainViewModel(private val pref: UserPreferences): ViewModel() {
             ) {
                 _isLoading.value = false
                 if(response.isSuccessful){
-//                    _registerResponse.value = response.body()
-                    _isRegistered.value = true
-                    Log.d(TAG, "onResponseSuccess: ${response.body()?.message} ${response.body()?.status}")
+                    _registerResponse.value = response.body()
+                    Log.d(TAG, "onResponseSuccess: ${response.body()?.status} ${response.body()?.message}")
                 }else{
-                    _isRegistered.value = false
-                    Log.e(TAG, "onResponseFailure: ${response.body()?.message} ${response.body()?.status}")
+                    Log.e(TAG, "onResponseFailure: ${response.body()?.status} ${response.body()?.message}")
                 }
             }
 
             override fun onFailure(call: Call<RegisterResponse>, t: Throwable) {
                 _isLoading.value = false
-                _isRegistered.value = false
                 Log.e(TAG, "onFailure: ${t.message}")
             }
         })
@@ -78,7 +72,7 @@ class MainViewModel(private val pref: UserPreferences): ViewModel() {
             override fun onResponse(call: Call<LoginResponse>, response: Response<LoginResponse>) {
                 _isLoading.value = false
                 if(response.isSuccessful){
-//                    _loginResponse.value = response.body()
+                    _loginResponse.value = response.body()
                     _isLoggedIn.value = true
                     response.body()?.accessToken?.let { saveToken(it) }
                     Log.d(TAG, "onResponseSuccess: Login Success")

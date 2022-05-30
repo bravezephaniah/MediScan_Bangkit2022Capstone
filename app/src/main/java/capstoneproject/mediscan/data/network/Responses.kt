@@ -13,15 +13,18 @@ data class RegisterResponse(
 
 data class LoginResponse(
 
+    @field:SerializedName("message")
+    val message: String? = null,
+
     @field:SerializedName("accessToken")
     val accessToken: String? = null,
 
     @field:SerializedName("userId")
     val userId: Int? = null,
 
-    @field:SerializedName("username")
-    val username: String? = null,
-
     @field:SerializedName("status")
-    val status: String? = null
+    val status: String? = null,
+
+    @field:SerializedName("username")
+    val username: String? = null
 )
