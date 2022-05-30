@@ -20,4 +20,8 @@
     <string name="regist_fail">Gagal Register, Harap Coba Lagi</string>
     <string name="login_desc_tagline">Silahkan masukkan detail akun anda untuk login</string>
     <string name="logout_desc">Logout</string>
+    <string name="history_home">History</string>
+    <string name="lorem_ipsum">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.</string>
+    <string name="Home_About">About Us</string>
+    <string name="lets_start">Lets Start</string>
 </resources>
