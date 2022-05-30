@@ -55,6 +55,9 @@ class LoginActivity : AppCompatActivity() {
                 }
             }
         }
+        binding.redirectSignup.setOnClickListener{
+            startActivity(Intent(this, SignupActivity::class.java))
+        }
     }
 
     private fun showLoading(b: Boolean) {
