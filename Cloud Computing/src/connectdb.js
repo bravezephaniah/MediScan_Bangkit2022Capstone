@@ -31,7 +31,29 @@ const selectUser = () => {
 			resolve(result);
 		});
 	});
-}
+};
+
+const updateUser = (userId, username, email) => {
+	con.query(
+		'UPDATE users SET username=?, email=? WHERE id=?',
+		[username, email, userId],
+		(err, result) => {
+			if (err) throw err;
+			return result;
+		}
+	);
+};
+
+const updatePassword = (userId, password) => {
+	con.query(
+		'UPDATE users SET password=? WHERE id=?',
+		[password, userId],
+		(err, result) => {
+			if (err) throw err;
+			return result;
+		}
+	);
+};
 
 const insertHistory = (user_id, result, img_url, createdAt) => {
 	con.query(
@@ -51,11 +73,21 @@ const selectHistory = () => {
 			resolve(result);
 		});
 	});
-}
+};
+
+const deleteHistory = (id) => {
+	con.query('DELETE FROM history WHERE id=?', [id], (err, result) => {
+		if (err) throw err;
+		return result;
+	});
+};
 
 module.exports = {
 	insertUser,
 	selectUser,
+	updateUser,
+	updatePassword,
 	insertHistory,
 	selectHistory,
+	deleteHistory
 };

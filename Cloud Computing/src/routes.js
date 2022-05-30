@@ -2,8 +2,11 @@ const {
 	addUser,
 	login,
 	logout,
+	updateProfile,
+	changePassword,
 	addHistory,
 	getHistoryByUserId,
+	deleteHistoryById,
 } = require('./handler');
 
 const routes = [
@@ -30,6 +33,16 @@ const routes = [
 		handler: logout,
 	},
 	{
+		method: 'PUT',
+		path: '/users',
+		handler: updateProfile,
+	},
+	{
+		method: 'PUT',
+		path: '/users/changePassword',
+		handler: changePassword,
+	},
+	{
 		method: 'POST',
 		path: '/history',
 		options: {
@@ -46,6 +59,11 @@ const routes = [
 		method: 'GET',
 		path: '/history',
 		handler: getHistoryByUserId,
+	},
+	{
+		method: 'DELETE',
+		path: '/history/{id}',
+		handler: deleteHistoryById,
 	},
 ];
 

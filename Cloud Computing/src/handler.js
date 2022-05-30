@@ -1,14 +1,17 @@
 const {
 	selectUser,
 	insertUser,
+	updateUser,
+	updatePassword,
 	insertHistory,
 	selectHistory,
+	deleteHistory,
 } = require('./connectdb');
 const jwt = require('jsonwebtoken');
 require('dotenv').config();
 const bcrypt = require('bcrypt');
 
-//cloud-storage
+//Cloud Storage Bucket
 const { format } = require('util');
 const { Storage } = require('@google-cloud/storage');
 const storage = new Storage({
@@ -17,6 +20,7 @@ const storage = new Storage({
 });
 const bucket = storage.bucket('mediscan-bucket');
 
+//Register User
 const addUser = async (request, h) => {
 	try {
 		const { username, email, password } = request.payload;
@@ -53,12 +57,14 @@ const addUser = async (request, h) => {
 	}
 };
 
+//Create Token for Login
 function generateAccessToken(user) {
 	return jwt.sign(user, process.env.ACCESS_TOKEN_SECRET, {
 		expiresIn: '1h',
 	});
 }
 
+//Login User
 const login = async (request, h) => {
 	const { username, password } = request.payload;
 	const su = await selectUser();
@@ -91,6 +97,7 @@ const login = async (request, h) => {
 	}
 };
 
+//Logout User
 const logout = (request, h) => {
 	const token = request.payload.token;
 	const jwtlogout = jwt.sign(token, '', { expiresIn: 1 }, (logout, err) => {
@@ -100,6 +107,89 @@ const logout = (request, h) => {
 	return jwtlogout;
 };
 
+//Update User Profile
+const updateProfile = async (request, h) => {
+	try {
+		authenticateToken(request, h, () => {
+			return;
+		});
+		const { username, email, password } = request.payload;
+		const su = await selectUser();
+		const currentUser = su.filter((u) => u.id === request.user.userId)[0];
+		const currentUserUsername = su.filter((u) => u.username === username)[0];
+		const currentUserEmail = su.filter((u) => u.email === email)[0];
+		const confirmPass = await bcrypt.compare(password, currentUser.password);
+		if (!confirmPass) {
+			return h
+				.response({
+					status: 'fail',
+					message: 'password not valid',
+				})
+				.code(403);
+		} else if (currentUserUsername !== undefined) {
+			return h
+				.response({
+					status: 'fail',
+					message: 'Username already exists',
+				})
+				.code(403);
+		} else if (currentUserEmail !== undefined) {
+			return h
+				.response({
+					status: 'fail',
+					message: 'Email already exists',
+				})
+				.code(403);
+		} else {
+			const userId = request.user.userId;
+			updateUser(userId, username, email);
+			return h.response({
+				status: 'success',
+				message: 'user updated',
+			});
+		}
+	} catch (err) {
+		return h.response({
+			status: 'fail',
+			message: 'user not updated',
+		});
+	}
+};
+
+//Update User Password
+const changePassword = async (request, h) => {
+	try {
+		authenticateToken(request, h, () => {
+			return;
+		});
+		const { password, newPassword } = request.payload;
+		const su = await selectUser();
+		const currentUser = su.filter((u) => u.id === request.user.userId)[0];
+		const confirmPass = await bcrypt.compare(password, currentUser.password);
+		if (!confirmPass) {
+			return h
+				.response({
+					status: 'fail',
+					message: 'password not valid',
+				})
+				.code(403);
+		} else {
+			const hashedPassword = await bcrypt.hash(newPassword, 10);
+			updatePassword(request.user.userId, hashedPassword);
+			return h.response({
+				status: 'success',
+				message: 'password updated',
+			});
+		}
+	} catch (err) {
+		return h.response({
+			status: 'fail',
+			message: 'password not updated',
+		});
+	}
+};
+
+//Validate Token
 function authenticateToken(request, h, next) {
 	const authHeader = request.headers.authorization;
 	const token = authHeader && authHeader.split(' ')[1];
@@ -116,6 +206,7 @@ function authenticateToken(request, h, next) {
 	});
 }
 
+//Updload Image to Cloud Storage
 function uploadImage(filename, buffer) {
 	return new Promise((resolve, reject) => {
 		const blob = bucket.file(filename);
@@ -136,6 +227,7 @@ function uploadImage(filename, buffer) {
 	});
 }
 
+//Add History Data
 const addHistory = async (request, h) => {
 	const { result } = request.payload;
 	const myFile = request.payload.file;
@@ -174,6 +266,7 @@ const addHistory = async (request, h) => {
 	}
 };
 
+//Get History By UserId
 const getHistoryByUserId = async (request, h) => {
 	try {
 		authenticateToken(request, h, () => {
@@ -190,11 +283,33 @@ const getHistoryByUserId = async (request, h) => {
 	}
 };
 
+//Delete History By History Id
+const deleteHistoryById = async (request, h) => {
+	try {
+		authenticateToken(request, h, () => {
+			return;
+		});
+		const { id } = request.params;
+		deleteHistory(id);
+		return h.response({
+			status: 'success',
+			message: 'history deleted',
+		});
+	} catch (error) {
+		return h
+			.response({ status: 'fail', message: 'history not deleted' })
+			.code(404);
+	}
+};
+
 module.exports = {
 	authenticateToken,
 	addUser,
 	login,
 	logout,
+	updateProfile,
+	changePassword,
 	addHistory,
 	getHistoryByUserId,
+	deleteHistoryById,
 };
