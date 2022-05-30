@@ -75,7 +75,7 @@ class MainActivity : AppCompatActivity() {
         binding.buttonToGallery.setOnClickListener { startGallery() }
         binding.logoutButton.setOnClickListener {
             viewModel.deleteToken()
-            startActivity(Intent(this, WelcomeActivity::class.java))
+            startActivity(Intent(this, LoginActivity::class.java))
             finish()
         }
     }

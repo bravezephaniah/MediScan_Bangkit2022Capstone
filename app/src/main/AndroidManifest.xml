@@ -35,9 +35,6 @@
             android:name=".view.LoginActivity"
             android:exported="false" />
         <activity
-            android:name=".view.WelcomeActivity"
-            android:exported="false" />
-        <activity
             android:name=".view.CameraActivity"
             android:exported="false" />
         <activity

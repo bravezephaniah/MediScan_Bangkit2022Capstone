@@ -1,6 +1,7 @@
 package capstoneproject.mediscan.view
 
 import android.content.Context
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -47,6 +48,9 @@ class SignupActivity : AppCompatActivity() {
                     binding.passwordSignupEdittext.text?.clear()
                 }
             }
+        }
+        binding.redirectLogin2.setOnClickListener {
+            startActivity(Intent(this, LoginActivity::class.java))
         }
 
     }
