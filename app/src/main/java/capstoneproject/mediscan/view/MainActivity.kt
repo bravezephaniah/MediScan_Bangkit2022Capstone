@@ -61,17 +61,6 @@ class MainActivity : AppCompatActivity() {
 
         val viewModel = ViewModelProvider(this,
             ViewModelFactory(UserPreferences.getInstance(dataStore)))[MainViewModel::class.java]
-        val isJustLogin = intent.getBooleanExtra(LOGIN_FLAG, false)
-
-        if(!isJustLogin){
-            viewModel.getToken().observe(this){
-                if(it.isEmpty()){
-                    startActivity(Intent(this, WelcomeActivity::class.java))
-                    finish()
-                }
-            }
-        }
-
 
 
         if (!allPermissionsGranted()) {
@@ -131,6 +120,5 @@ class MainActivity : AppCompatActivity() {
         const val CAMERA_X_RESULT = 200
         private val REQUIRED_PERMISSIONS = arrayOf(Manifest.permission.CAMERA)
         private const val REQUEST_CODE_PERMISSIONS = 10
-        const val LOGIN_FLAG = "LOGIN_FLAG"
     }
 }

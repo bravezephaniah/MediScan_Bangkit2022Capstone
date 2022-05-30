@@ -38,9 +38,9 @@ class LoginActivity : AppCompatActivity() {
             viewModel.loginUser(username, password)
             viewModel.isLoggedIn.observe(this) {
                 if (it) {
-                    val intent = Intent(this, MainActivity::class.java)
+                    val intent = Intent(this, HomeActivity::class.java)
                     intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
-                    intent.putExtra(MainActivity.LOGIN_FLAG, true)
+                    intent.putExtra(HomeActivity.LOGIN_FLAG, true)
 
                     startActivity(intent)
                     finish()
