@@ -7,7 +7,7 @@
         tools:context=".view.LoginActivity">
 
     <TextView
-        android:id="@+id/copyrightTextView2"
+        android:id="@+id/copyright_login"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
@@ -43,10 +43,11 @@
         app:startIconDrawable="@drawable/ic_baseline_person_24">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/username_login_edittext"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/username_desc"/>
+                android:id="@+id/username_login_edittext"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/username_desc"
+                tools:ignore="TextContrastCheck" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
@@ -62,23 +63,25 @@
         app:startIconDrawable="@drawable/ic_baseline_lock_24">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/password_login_edittext"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:inputType="textPassword"
-            android:hint="@string/password_desc"/>
+                android:id="@+id/password_login_edittext"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:inputType="textPassword"
+                android:hint="@string/password_desc"
+                tools:ignore="TextContrastCheck" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
     <ImageView
-        android:id="@+id/login_logo"
-        android:layout_width="299dp"
-        android:layout_height="61dp"
-        android:layout_marginTop="164dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/logo_mediscan" />
+            android:id="@+id/login_logo"
+            android:layout_width="299dp"
+            android:layout_height="61dp"
+            android:layout_marginTop="164dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/logo_mediscan"
+            android:contentDescription="@string/logo_desc" />
 
     <Button
         android:id="@+id/login_button"
@@ -103,14 +106,14 @@
         app:layout_constraintTop_toBottomOf="@+id/login_button" />
 
     <TextView
-        android:id="@+id/redirect_signup"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:text="@string/signup_desc"
-        android:textColor="#54A1A6"
-        android:textSize="15sp"
-        app:layout_constraintStart_toEndOf="@+id/redirect_desc_login"
-        app:layout_constraintTop_toTopOf="@+id/redirect_desc_login" />
+            android:id="@+id/redirect_signup"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:text="@string/signup_desc"
+            android:textColor="#00838F"
+            android:textSize="15sp"
+            app:layout_constraintStart_toEndOf="@+id/redirect_desc_login"
+            app:layout_constraintTop_toTopOf="@+id/redirect_desc_login" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

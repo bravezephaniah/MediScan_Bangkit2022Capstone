@@ -14,7 +14,8 @@
         android:layout_marginTop="16dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/logo_mediscan" />
+        app:srcCompat="@drawable/logo_mediscan"
+            android:contentDescription="@string/logo_desc" />
 
     <TextView
         android:id="@+id/About_Header"
@@ -30,7 +31,7 @@
         app:layout_constraintTop_toBottomOf="@+id/Logo_App" />
 
     <TextView
-        android:id="@+id/About_us"
+        android:id="@+id/About_desc"
         android:layout_width="0dp"
         android:layout_height="198dp"
         android:layout_marginTop="16dp"
@@ -43,7 +44,7 @@
         app:layout_constraintTop_toBottomOf="@+id/About_Header" />
 
     <TextView
-        android:id="@+id/textView3"
+        android:id="@+id/history_header"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
@@ -53,7 +54,7 @@
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/About_us" />
+        app:layout_constraintTop_toBottomOf="@+id/About_desc" />
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView"
@@ -67,7 +68,7 @@
         app:layout_constraintBottom_toTopOf="@+id/button_start"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView3"
+        app:layout_constraintTop_toBottomOf="@+id/history_header"
         android:backgroundTint="@color/grey_mile" >
 
         <androidx.recyclerview.widget.RecyclerView
