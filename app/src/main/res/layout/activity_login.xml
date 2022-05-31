@@ -6,6 +6,19 @@
         android:layout_height="match_parent"
         tools:context=".view.LoginActivity">
 
+    <TextView
+        android:id="@+id/copyrightTextView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginBottom="8dp"
+        android:text="@string/copyright"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
     <ProgressBar
             style="?android:attr/progressBarStyle"
             android:layout_width="wrap_content"
@@ -61,7 +74,7 @@
         android:id="@+id/login_logo"
         android:layout_width="299dp"
         android:layout_height="61dp"
-        android:layout_marginTop="186dp"
+        android:layout_marginTop="164dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -82,7 +95,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="28dp"
-        android:text="Dont have an account?"
+        android:text="@string/dont_have_an_account"
         android:textSize="15sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.39"
@@ -94,7 +107,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:text="Sign up"
+        android:text="@string/signup_desc"
         android:textColor="#54A1A6"
         android:textSize="15sp"
         app:layout_constraintStart_toEndOf="@+id/redirect_desc_login"

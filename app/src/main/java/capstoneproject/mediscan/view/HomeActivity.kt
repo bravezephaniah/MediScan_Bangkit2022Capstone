@@ -33,7 +33,7 @@ class HomeActivity : AppCompatActivity() {
         if(!isJustLogin){
             viewModel.getToken().observe(this){
                 if(it.isEmpty()){
-                    startActivity(Intent(this, WelcomeActivity::class.java))
+                    startActivity(Intent(this, LoginActivity::class.java))
                     finish()
                 }
             }
