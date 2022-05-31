@@ -19,7 +19,7 @@
             android:layout_marginEnd="16dp"
             android:layout_marginBottom="16dp"
             android:layout_marginStart="16dp"
-            android:contentDescription="@string/captured_image_desc"/>
+            android:contentDescription="@string/captured_image_desc" />
 
     <Button
             android:text="@string/camera_desc"
@@ -54,6 +54,15 @@
             android:id="@+id/guideline2"
             app:layout_constraintGuide_begin="300dp"
             android:orientation="horizontal" />
+
+    <androidx.camera.view.PreviewView
+            android:id="@+id/cameraPreview"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintTop_toBottomOf="@+id/button_to_gallery"
+            app:layout_constraintBottom_toTopOf="@+id/logout_button"
+            app:layout_constraintEnd_toEndOf="@+id/imgview_captured"
+            app:layout_constraintStart_toStartOf="@+id/imgview_captured" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:layout_width="wrap_content"
