@@ -67,7 +67,6 @@ class MainActivity : AppCompatActivity() {
 
         val viewModel = ViewModelProvider(this,
             ViewModelFactory(UserPreferences.getInstance(dataStore)))[MainViewModel::class.java]
-        startCamera()
 
         if (!allPermissionsGranted()) {
             ActivityCompat.requestPermissions(
@@ -84,37 +83,6 @@ class MainActivity : AppCompatActivity() {
             startActivity(Intent(this, LoginActivity::class.java))
             finish()
         }
-    }
-
-    private fun startCamera() {
-        val cameraProviderFuture = ProcessCameraProvider.getInstance(this)
-
-        cameraProviderFuture.addListener({
-            val cameraProvider: ProcessCameraProvider = cameraProviderFuture.get()
-            val preview = Preview.Builder()
-                .build()
-                .also {
-                    it.setSurfaceProvider(binding.cameraPreview.surfaceProvider)
-                }
-
-            imageCapture = ImageCapture.Builder().build()
-
-            try {
-                cameraProvider.unbindAll()
-                cameraProvider.bindToLifecycle(
-                    this,
-                    cameraSelector,
-                    preview,
-                    imageCapture
-                )
-            } catch (exc: Exception) {
-                Toast.makeText(
-                    this@MainActivity,
-                    getString(R.string.camera_launch_fail),
-                    Toast.LENGTH_SHORT
-                ).show()
-            }
-        }, ContextCompat.getMainExecutor(this))
     }
 
     private fun startCameraX() {
