@@ -29,4 +29,8 @@
     <string name="copyright">© 2022 MediScan</string>
     <string name="dont_have_an_account">Dont have an account?</string>
     <string name="logo_desc">Logo</string>
+    <string name="account_background">Account Background</string>
+    <string name="user_logo">User Logo</string>
+    <string name="camera_corner">Camera Corner</string>
+    <string name="upload_desc">Upload</string>
 </resources>

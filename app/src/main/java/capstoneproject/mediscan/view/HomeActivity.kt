@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Toast
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.preferencesDataStore
@@ -30,22 +31,27 @@ class HomeActivity : AppCompatActivity() {
         )[MainViewModel::class.java]
         val isJustLogin = intent.getBooleanExtra(LOGIN_FLAG, false)
 
-        if(!isJustLogin){
-            viewModel.getToken().observe(this){
-                if(it.isEmpty()){
+        if (!isJustLogin) {
+            viewModel.getToken().observe(this) {
+                if (it.isEmpty()) {
                     startActivity(Intent(this, LoginActivity::class.java))
                     finish()
                 }
             }
         }
 
-        binding.buttonStart.setOnClickListener{
+        binding.buttonStart.setOnClickListener {
             startActivity(Intent(this, MainActivity::class.java))
+        }
+        binding.userLogo.setOnClickListener {
+            Toast.makeText(this,
+                "User Account Clicked",
+                Toast.LENGTH_SHORT).show()
         }
 
     }
 
-    companion object{
+    companion object {
         const val LOGIN_FLAG = "LOGIN_FLAG"
     }
 

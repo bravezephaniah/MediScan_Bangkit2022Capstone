@@ -7,39 +7,97 @@
         tools:context=".view.MainActivity">
 
     <ImageView
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            app:srcCompat="@drawable/ic_baseline_image_24"
-            android:id="@+id/imgview_captured"
-            app:layout_constraintEnd_toEndOf="parent"
+            android:id="@+id/Logo_App"
+            android:layout_width="183dp"
+            android:layout_height="37dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="16dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            android:layout_marginTop="16dp"
-            app:layout_constraintBottom_toTopOf="@+id/guideline2"
-            android:layout_marginEnd="16dp"
-            android:layout_marginBottom="16dp"
-            android:layout_marginStart="16dp"
-            android:contentDescription="@string/captured_image_desc"/>
+            app:srcCompat="@drawable/logo_mediscan"
+            android:contentDescription="@string/logo_desc" />
 
-    <Button
-            android:text="@string/camera_desc"
+    <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/button_to_camera"
-            app:layout_constraintEnd_toStartOf="@+id/guideline1"
-            app:layout_constraintTop_toTopOf="@+id/guideline2"
+            app:srcCompat="@drawable/account_background"
+            android:id="@+id/user_background"
+            app:layout_constraintTop_toTopOf="@+id/Logo_App"
+            android:contentDescription="@string/account_background"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginEnd="32dp" />
+
+    <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:srcCompat="@drawable/ic_baseline_person_37"
+            android:id="@+id/user_logo"
+            app:layout_constraintEnd_toEndOf="@+id/user_background"
+            app:layout_constraintBottom_toBottomOf="@+id/user_background"
+            app:layout_constraintStart_toStartOf="@+id/user_background"
+            app:layout_constraintTop_toTopOf="@+id/user_background"
+            android:contentDescription="@string/user_logo" />
+
+    <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:srcCompat="@drawable/camera_corner"
+            android:id="@+id/camera_corner"
+            app:layout_constraintTop_toBottomOf="@+id/Logo_App"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginTop="32dp"
+            android:contentDescription="@string/camera_corner"
+            tools:ignore="ImageContrastCheck" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:id="@+id/imgview_captured"
+            app:layout_constraintTop_toTopOf="@+id/camera_corner"
+            app:layout_constraintEnd_toEndOf="@+id/camera_corner"
+            app:layout_constraintStart_toStartOf="@+id/camera_corner"
+            app:layout_constraintBottom_toBottomOf="@+id/camera_corner"
+            android:layout_marginTop="8dp"
+            android:layout_marginStart="8dp"
             android:layout_marginEnd="8dp"
-            app:cornerRadius="10dp" />
+            android:layout_marginBottom="8dp"
+            app:srcCompat="@drawable/ic_baseline_image_24"/>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            app:srcCompat="@drawable/ic_baseline_camera_alt_24"
+            android:id="@+id/button_to_camera"
+            app:layout_constraintTop_toBottomOf="@+id/camera_corner"
+            app:layout_constraintEnd_toStartOf="@+id/guideline1"
+            android:layout_marginEnd="8dp"
+            android:layout_marginTop="8dp"
+            app:backgroundTint="#40916C"
+            app:tint="#FFFFFF"
+            app:fabCustomSize="50dp"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginStart="108dp"
+            android:contentDescription="@string/camera_desc"
+            android:focusable="true" />
 
     <Button
-            android:text="@string/gallery_desc"
+            android:text="@string/upload_desc"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/button_to_gallery"
-            app:layout_constraintStart_toStartOf="@+id/guideline1"
-            app:layout_constraintTop_toTopOf="@+id/guideline2"
-            android:layout_marginStart="8dp"
-            app:cornerRadius="10dp" />
+            app:cornerRadius="8dp"
+            app:layout_constraintTop_toTopOf="@+id/button_to_camera"
+            app:layout_constraintBottom_toBottomOf="@+id/button_to_camera"
+            android:textColorLink="#FFFFFF"
+            android:backgroundTint="#40916C"
+            app:icon="@drawable/ic_baseline_file_upload_24"
+            app:iconGravity="textEnd"
+            app:iconPadding="0dp"
+            app:layout_constraintStart_toEndOf="@+id/button_to_camera"
+            android:layout_marginStart="16dp"
+            tools:ignore="TextContrastCheck" />
 
     <androidx.constraintlayout.widget.Guideline
             android:layout_width="wrap_content"
@@ -47,25 +105,5 @@
             android:id="@+id/guideline1"
             app:layout_constraintGuide_begin="205dp"
             android:orientation="vertical" />
-
-    <androidx.constraintlayout.widget.Guideline
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/guideline2"
-            app:layout_constraintGuide_begin="300dp"
-            android:orientation="horizontal" />
-
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:clickable="true"
-            app:srcCompat="@drawable/baseline_logout_24"
-            android:id="@+id/logout_button"
-            android:focusable="true"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            android:layout_marginEnd="8dp"
-            android:layout_marginBottom="8dp"
-            android:contentDescription="@string/logout_desc" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

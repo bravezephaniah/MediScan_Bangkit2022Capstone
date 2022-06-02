@@ -10,10 +10,6 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
-import androidx.camera.core.CameraSelector
-import androidx.camera.core.ImageCapture
-import androidx.camera.core.Preview
-import androidx.camera.lifecycle.ProcessCameraProvider
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.datastore.core.DataStore
@@ -32,8 +28,6 @@ private val Context.dataStore: DataStore<Preferences> by preferencesDataStore(na
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
-    private var imageCapture: ImageCapture? = null
-    private var cameraSelector: CameraSelector = CameraSelector.DEFAULT_BACK_CAMERA
 
     private val cameraLauncher = registerForActivityResult(
         ActivityResultContracts.StartActivityForResult()
@@ -78,10 +72,8 @@ class MainActivity : AppCompatActivity() {
 
         binding.buttonToCamera.setOnClickListener { startCameraX() }
         binding.buttonToGallery.setOnClickListener { startGallery() }
-        binding.logoutButton.setOnClickListener {
-            viewModel.deleteToken()
-            startActivity(Intent(this, LoginActivity::class.java))
-            finish()
+        binding.userLogo.setOnClickListener {
+            Toast.makeText(this, "User Account Clicked", Toast.LENGTH_SHORT).show()
         }
     }
 
