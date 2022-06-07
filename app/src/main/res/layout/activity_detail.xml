@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".view.DetailActivity">
+
+
+    <ImageView
+        android:id="@+id/logo_App"
+        android:layout_width="183dp"
+        android:layout_height="37dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="16dp"
+        android:contentDescription="@string/logo_desc"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/logo_mediscan" />
+
+    <ImageView
+        android:id="@+id/user_background"
+        android:layout_width="156dp"
+        android:layout_height="156dp"
+        android:layout_marginTop="68dp"
+        android:contentDescription="@string/account_background"
+
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/logo_App"
+        app:srcCompat="@drawable/account_background" />
+
+    <TextView
+        android:id="@+id/dtl_username"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_marginTop="60dp"
+        android:fontFamily="@font/poppins"
+        android:textSize="18sp"
+        android:text="@string/username_desc"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/user_background" />
+
+    <TextView
+        android:id="@+id/dtl_email"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="60dp"
+        android:text="@string/email_desc"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/dtl_username"
+        android:fontFamily="@font/poppins"
+        android:textSize="18sp"/>
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="155dp"
+        android:layout_height="151dp"
+        app:layout_constraintBottom_toBottomOf="@+id/user_background"
+        app:layout_constraintEnd_toEndOf="@+id/user_background"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="@+id/user_background"
+        app:layout_constraintTop_toTopOf="@+id/user_background"
+        app:layout_constraintVertical_bias="0.0"
+        app:srcCompat="@drawable/ic_baseline_person_37" />
+
+    <Button
+        android:id="@+id/button_logout"
+        android:layout_width="164dp"
+        android:layout_height="44dp"
+        android:layout_marginBottom="136dp"
+        android:text="Logout"
+        android:textAllCaps="false"
+        android:textColorHighlight="#FFFFFF"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.8"
+        app:layout_constraintStart_toStartOf="parent"
+        app:tint="@color/red_logout" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

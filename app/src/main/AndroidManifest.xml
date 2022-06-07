@@ -19,10 +19,12 @@
         android:theme="@style/Theme.CapstoneProject"
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
-
+        <activity
+            android:name=".DetailActivity"
+            android:exported="false" />
         <activity
             android:name=".view.HomeActivity"
-            android:exported="true" >
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -40,7 +42,7 @@
             android:exported="false" />
         <activity
             android:name=".view.MainActivity"
-            android:exported="false"/>
+            android:exported="false" />
 
         <meta-data
             android:name="preloaded_fonts"

@@ -13,4 +13,5 @@
     <color name="green_account">#43513E</color>
     <color name="grey_camera">#C8C8C8</color>
     <color name="green_camera">#40916C</color>
+    <color name="red_logout">#C21313</color>
 </resources>
