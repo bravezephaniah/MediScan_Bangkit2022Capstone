@@ -95,7 +95,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:srcCompat="@drawable/account_background"
-            android:id="@+id/user_background"
+            android:id="@+id/user_background_detail"
             app:layout_constraintEnd_toEndOf="@+id/About_desc"
             app:layout_constraintTop_toTopOf="@+id/Logo_App"
             android:contentDescription="@string/account_background" />
@@ -105,10 +105,10 @@
             android:layout_height="wrap_content"
             app:srcCompat="@drawable/ic_baseline_person_37"
             android:id="@+id/user_logo"
-            app:layout_constraintEnd_toEndOf="@+id/user_background"
-            app:layout_constraintBottom_toBottomOf="@+id/user_background"
-            app:layout_constraintStart_toStartOf="@+id/user_background"
-            app:layout_constraintTop_toTopOf="@+id/user_background"
+            app:layout_constraintEnd_toEndOf="@+id/user_background_detail"
+            app:layout_constraintBottom_toBottomOf="@+id/user_background_detail"
+            app:layout_constraintStart_toStartOf="@+id/user_background_detail"
+            app:layout_constraintTop_toTopOf="@+id/user_background_detail"
             android:contentDescription="@string/user_logo" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
