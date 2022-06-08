@@ -108,6 +108,7 @@ class MainViewModel(private val pref: UserPreferences): ViewModel() {
                     _isLoggedIn.value = true
                     response.body()?.accessToken?.let { saveToken(it) }
                     response.body()?.username?.let { saveUsername(it) }
+                    response.body()?.email?.let { saveEmail(it) }
                     Log.d(TAG, "onResponseSuccess: Login Success")
                 }else{
                     _isLoggedIn.value = false

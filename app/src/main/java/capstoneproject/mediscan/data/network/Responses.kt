@@ -8,7 +8,7 @@ data class RegisterResponse(
     val message: String? = null,
 
     @field:SerializedName("status")
-    val status: String? = null
+    val status: String? = null,
 )
 
 data class LoginResponse(
@@ -26,5 +26,8 @@ data class LoginResponse(
     val status: String? = null,
 
     @field:SerializedName("username")
-    val username: String? = null
+    val username: String? = null,
+
+    @field:SerializedName("email")
+    val email: String? = null
 )

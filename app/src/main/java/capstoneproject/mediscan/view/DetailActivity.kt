@@ -31,14 +31,19 @@ class DetailActivity : AppCompatActivity() {
             viewModel.deleteToken()
             viewModel.deleteUsername()
             viewModel.deleteEmail()
+
             val intent = Intent(this@DetailActivity, LoginActivity::class.java)
             intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
+
             startActivity(intent)
             finish()
         }
 
         viewModel.getUsername().observe(this){
             binding.detailUsername.text = it
+        }
+        viewModel.getEmail().observe(this){
+            binding.detailEmail.text = it
         }
     }
 
