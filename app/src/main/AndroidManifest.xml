@@ -20,6 +20,15 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
+            android:name=".view.HealthyActivity"
+            android:exported="false" />
+        <activity
+            android:name=".view.CancerActivity"
+            android:exported="false" />
+        <activity
+            android:name=".view.SickActivity"
+            android:exported="false" />
+        <activity
             android:name=".view.DetailActivity"
             android:exported="false" />
         <activity
