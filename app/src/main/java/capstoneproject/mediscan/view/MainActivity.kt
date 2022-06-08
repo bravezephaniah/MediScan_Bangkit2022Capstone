@@ -73,7 +73,8 @@ class MainActivity : AppCompatActivity() {
         binding.buttonToCamera.setOnClickListener { startCameraX() }
         binding.buttonToGallery.setOnClickListener { startGallery() }
         binding.userLogo.setOnClickListener {
-            Toast.makeText(this, "User Account Clicked", Toast.LENGTH_SHORT).show()
+            val intent = Intent(this@MainActivity, DetailActivity::class.java)
+            startActivity(intent)
         }
     }
 

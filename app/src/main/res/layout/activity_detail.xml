@@ -59,14 +59,17 @@
             app:cornerRadius="8dp" />
 
     <androidx.cardview.widget.CardView
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             app:layout_constraintTop_toBottomOf="@+id/user_background_detail"
-            app:layout_constraintEnd_toEndOf="@+id/user_background_detail"
-            app:layout_constraintStart_toStartOf="@+id/user_background_detail"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             android:layout_marginTop="64dp"
             android:id="@+id/cv_username_detail"
-            app:cardCornerRadius="8dp">
+            app:cardCornerRadius="8dp"
+            android:layout_marginEnd="64dp"
+            android:layout_marginStart="64dp"
+            app:cardBackgroundColor="@color/grey_mile">
 
         <TextView
                 android:id="@+id/detail_username"
@@ -80,7 +83,7 @@
     </androidx.cardview.widget.CardView>
 
     <androidx.cardview.widget.CardView
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             app:layout_constraintEnd_toEndOf="@+id/cv_username_detail"
             app:layout_constraintStart_toStartOf="@+id/cv_username_detail"
@@ -88,12 +91,13 @@
             android:layout_marginTop="24dp"
             android:padding="16dp"
             app:cardCornerRadius="8dp"
-            android:id="@+id/cardView2">
+            android:id="@+id/cv_email_detail"
+            app:cardBackgroundColor="@color/grey_mile">
 
         <TextView
                 android:id="@+id/detail_email"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:text="@string/email_desc"
                 android:fontFamily="@font/poppins"
                 android:textSize="18sp"

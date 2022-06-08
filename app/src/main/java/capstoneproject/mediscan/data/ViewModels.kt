@@ -29,15 +29,47 @@ class MainViewModel(private val pref: UserPreferences): ViewModel() {
         return pref.getToken().asLiveData()
     }
 
+    fun getUsername(): LiveData<String>{
+        return pref.getUsername().asLiveData()
+    }
+
+    fun getEmail(): LiveData<String>{
+        return pref.getEmail().asLiveData()
+    }
+
     fun saveToken(token: String){
         viewModelScope.launch {
             pref.saveToken(token)
         }
     }
 
+    fun saveUsername(username: String){
+        viewModelScope.launch {
+            pref.saveUsername(username)
+        }
+    }
+
+    fun saveEmail(email: String){
+        viewModelScope.launch {
+            pref.saveEmail(email)
+        }
+    }
+
     fun deleteToken(){
         viewModelScope.launch{
             pref.deleteToken()
+        }
+    }
+
+    fun deleteUsername(){
+        viewModelScope.launch{
+            pref.deleteUsername()
+        }
+    }
+
+    fun deleteEmail(){
+        viewModelScope.launch{
+            pref.deleteEmail()
         }
     }
 
@@ -75,6 +107,7 @@ class MainViewModel(private val pref: UserPreferences): ViewModel() {
                     _loginResponse.value = response.body()
                     _isLoggedIn.value = true
                     response.body()?.accessToken?.let { saveToken(it) }
+                    response.body()?.username?.let { saveUsername(it) }
                     Log.d(TAG, "onResponseSuccess: Login Success")
                 }else{
                     _isLoggedIn.value = false
