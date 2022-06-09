@@ -1,13 +1,12 @@
-
 # MediScan API
 
-API code for MediScan Application.
+[MediScan API](https://documenter.getpostman.com/view/18485818/Uz5Kjtr1) code for MediScan Application.
+
 ## Tech Stack
 
 **Server:** Node, Hapi
 
 **Database:** MySQL
-
 
 ## Environment Variables
 
@@ -22,7 +21,6 @@ To run this project, you will need to add the following environment variables to
 `DB_PASSWORD`
 
 `DB_DATABASE`
-
 
 ## Run Locally
 
@@ -64,10 +62,10 @@ Start the server on production
   POST /users
 ```
 
-| Request | Type     | Description                |
-| :-------- | :------- | :------------------------- |
+| Request    | Type     | Description  |
+| :--------- | :------- | :----------- |
 | `username` | `string` | **Required** |
-| `email` | `string` | **Required** |
+| `email`    | `string` | **Required** |
 | `password` | `string` | **Required** |
 
 #### Login User
@@ -76,9 +74,9 @@ Start the server on production
   POST /login
 ```
 
-| Request | Type     | Description                       |
-| :-------- | :------- | :-------------------------------- |
-| `username`      | `string` | **Required** |
+| Request    | Type     | Description  |
+| :--------- | :------- | :----------- |
+| `username` | `string` | **Required** |
 | `password` | `string` | **Required** |
 
 #### Logout User
@@ -87,8 +85,8 @@ Start the server on production
   POST /logout
 ```
 
-| Request | Type     | Description                       |
-| :-------- | :------- | :-------------------------------- |
+| Request | Type     | Description  |
+| :------ | :------- | :----------- |
 | `token` | `string` | **Required** |
 
 #### Update User Profile
@@ -96,12 +94,13 @@ Start the server on production
 ```http
   PUT /users
 ```
+
 **Authorization** Bearer {token}
 
-| Request | Type     | Description                       |
-| :-------- | :------- | :-------------------------------- |
+| Request    | Type     | Description  |
+| :--------- | :------- | :----------- |
 | `username` | `string` | **Required** |
-| `email` | `string` | **Required** |
+| `email`    | `string` | **Required** |
 | `password` | `string` | **Required** |
 
 #### Change User Password
@@ -109,11 +108,12 @@ Start the server on production
 ```http
   PUT /users/changePassword
 ```
+
 **Authorization** Bearer {token}
 
-| Request | Type     | Description                       |
-| :-------- | :------- | :-------------------------------- |
-| `password` | `string` | **Required** |
+| Request       | Type     | Description  |
+| :------------ | :------- | :----------- |
+| `password`    | `string` | **Required** |
 | `newPassword` | `string` | **Required** |
 
 #### Add History Data
@@ -121,18 +121,20 @@ Start the server on production
 ```http
   POST /history
 ```
+
 **Authorization** Bearer {token}
 
-| Request | Type     | Description                       |
-| :-------- | :------- | :-------------------------------- |
-| `result` | `string` | **Required** |
-| `file` | `file (image)` | **Required** |
+| Request  | Type           | Description  |
+| :------- | :------------- | :----------- |
+| `result` | `string`       | **Required** |
+| `file`   | `file (image)` | **Required** |
 
 #### Get History By UserId
 
 ```http
   GET /history
 ```
+
 **Authorization** Bearer {token}
 
 #### Delete History By Id
@@ -140,9 +142,9 @@ Start the server on production
 ```http
   DELETE /history/{id}
 ```
+
 **Authorization** Bearer {token}
 
-| Parameter | Type     | Description                       |
-| :-------- | :------- | :-------------------------------- |
-| `id` | `string` | **Required** |
-
+| Parameter | Type     | Description  |
+| :-------- | :------- | :----------- |
+| `id`      | `string` | **Required** |
