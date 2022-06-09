@@ -33,4 +33,9 @@
     <string name="user_logo">User Logo</string>
     <string name="camera_corner">Camera Corner</string>
     <string name="upload_desc">Upload</string>
+    <string name="update_default">Update</string>
+    <string name="current_username_default">Current Username</string>
+    <string name="new_username_default">New Username</string>
+    <string name="new_email_default">New Email</string>
+    <string name="current_email_default">Old Email</string>
 </resources>

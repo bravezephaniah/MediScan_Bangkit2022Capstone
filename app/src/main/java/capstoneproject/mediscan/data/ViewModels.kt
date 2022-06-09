@@ -19,9 +19,6 @@ class MainViewModel(private val pref: UserPreferences): ViewModel() {
     private var _registerResponse = MutableLiveData<RegisterResponse>()
     val registerResponse: LiveData<RegisterResponse> = _registerResponse
 
-    private var _loginResponse = MutableLiveData<LoginResponse>()
-    val loginResponse: LiveData<LoginResponse> = _loginResponse
-
     private var _isLoggedIn = MutableLiveData<Boolean>()
     val isLoggedIn: LiveData<Boolean> = _isLoggedIn
 
@@ -104,7 +101,6 @@ class MainViewModel(private val pref: UserPreferences): ViewModel() {
             override fun onResponse(call: Call<LoginResponse>, response: Response<LoginResponse>) {
                 _isLoading.value = false
                 if(response.isSuccessful){
-                    _loginResponse.value = response.body()
                     _isLoggedIn.value = true
                     response.body()?.accessToken?.let { saveToken(it) }
                     response.body()?.username?.let { saveUsername(it) }

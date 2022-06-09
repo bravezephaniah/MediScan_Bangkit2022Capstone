@@ -29,7 +29,8 @@ interface ApiService {
 
 class ApiConfig {
     fun getApiService(): ApiService {
-        val loggingInterceptor = if (BuildConfig.DEBUG) {
+        val loggingInterceptor =
+            if (BuildConfig.DEBUG) {
             HttpLoggingInterceptor().setLevel(
                 HttpLoggingInterceptor.Level.BODY)
         } else {
