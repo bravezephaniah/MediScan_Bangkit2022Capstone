@@ -84,6 +84,7 @@ const login = async (request, h) => {
 					message: 'login success',
 					userId: currentUser.id,
 					username: currentUser.username,
+					email: currentUser.email,
 					accessToken: accessToken,
 				})
 				.code(200);
@@ -126,6 +127,16 @@ const updateProfile = async (request, h) => {
 					message: 'password not valid',
 				})
 				.code(403);
+		} else if (
+			currentUser.username === username ||
+			currentUser.email === email
+		) {
+			const userId = request.user.userId;
+			updateUser(userId, username, email);
+			return h.response({
+				status: 'success',
+				message: 'user updated',
+			});
 		} else if (currentUserUsername !== undefined) {
 			return h
 				.response({
