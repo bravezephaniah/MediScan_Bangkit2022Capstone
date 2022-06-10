@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".view.ChangeUsernameActivity">
+
+    <TextView
+            android:id="@+id/copyright_changeusername"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginEnd="32dp"
+            android:layout_marginBottom="8dp"
+            android:text="@string/copyright"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+    <ProgressBar
+            style="?android:attr/progressBarStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/loading_changeusername"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:elevation="20dp"
+            android:visibility="gone" />
+
+    <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/username_old_inputlayout"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="49dp"
+            app:layout_constraintEnd_toEndOf="@+id/changeusername_logo"
+            app:layout_constraintStart_toStartOf="@+id/changeusername_logo"
+            app:layout_constraintTop_toBottomOf="@+id/changeusername_logo">
+
+        <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/username_old_edittext"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/current_username_default"
+                tools:ignore="TextContrastCheck" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/username_new_inputlayout"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="33dp"
+            app:layout_constraintEnd_toEndOf="@+id/username_old_inputlayout"
+            app:layout_constraintStart_toStartOf="@+id/username_old_inputlayout"
+            app:layout_constraintTop_toBottomOf="@+id/username_old_inputlayout">
+
+        <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/username_new_edittext"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:hint="@string/new_username_default"
+                tools:ignore="TextContrastCheck" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/password_changeusername_inputlayout"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="@+id/username_new_inputlayout"
+            app:layout_constraintStart_toStartOf="@+id/username_new_inputlayout"
+            app:layout_constraintTop_toBottomOf="@+id/username_new_inputlayout"
+            app:passwordToggleEnabled="false"
+            app:startIconDrawable="@drawable/ic_baseline_lock_24"
+            android:layout_marginTop="33dp">
+
+        <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/password_changeusername_edittext"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:inputType="textPassword"
+                android:hint="@string/password_desc"
+                tools:ignore="TextContrastCheck" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <ImageView
+            android:id="@+id/changeusername_logo"
+            android:layout_width="299dp"
+            android:layout_height="61dp"
+            android:layout_marginTop="164dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/logo_mediscan"
+            android:contentDescription="@string/logo_desc" />
+
+    <Button
+            android:id="@+id/change_username_button"
+            android:layout_width="wrap_content"
+            android:layout_height="48dp"
+            android:text="@string/update_default"
+            app:layout_constraintEnd_toEndOf="@+id/password_changeusername_inputlayout"
+            app:layout_constraintTop_toBottomOf="@+id/password_changeusername_inputlayout"
+            android:layout_marginTop="28dp" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
