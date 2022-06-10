@@ -30,13 +30,13 @@
                 android:exported="false" />
         <activity
                 android:name=".view.HealthyActivity"
-            android:exported="false" />
+                android:exported="false" />
         <activity
-            android:name=".view.CancerActivity"
-            android:exported="false" />
+                android:name=".view.CancerActivity"
+                android:exported="false" />
         <activity
-            android:name=".view.SickActivity"
-            android:exported="false" />
+                android:name=".view.SickActivity"
+                android:exported="false" />
         <activity
                 android:name=".view.HomeActivity"
                 android:exported="true">

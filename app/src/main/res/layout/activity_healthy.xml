@@ -72,18 +72,16 @@
 
 
                 <TextView
-                    android:id="@+id/result_header"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="40dp"
-                    android:fontFamily="@font/poppins_medium"
-                    android:text="@string/not_cancer"
-                    android:textColor="@color/green_mile"
-                    android:textSize="28sp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.094"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                        android:id="@+id/result_header"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="40dp"
+                        android:fontFamily="@font/poppins_medium"
+                        android:text="@string/not_cancer"
+                        android:textColor="@color/green_mile"
+                        android:textSize="28sp"
+                        app:layout_constraintStart_toStartOf="@+id/result_suggestion"
+                        app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
                     android:id="@+id/result_suggestion"
