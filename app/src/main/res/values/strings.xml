@@ -40,4 +40,11 @@
     <string name="current_email_default">Old Email</string>
     <string name="fail_change_username">Username tidak bisa sama</string>
     <string name="email_change_fail">Email tidak bisa sama</string>
+    <string name="suggestion">Suggestion</string>
+    <string name="probable_cancer">Probable Cancer</string>
+    <string name="possible_skin_diseases">Possible Skin Diseases</string>
+    <string name="nearby_hospital">Nearby Hospital</string>
+    <string name="sick_desc">Based on our analyzation, your skin feature is not considered as skin cancer, although it might be other skin diseases. We suggest you to contact nearby hospital to get a doctor opinion/medical treatment.</string>
+    <string name="cancer_desc">Based on our analyzation, your skin feature is considered as a probable cancer cell. We suggest you to contact nearby hospital to get a medical treatment.</string>
+    <string name="not_cancer">Not Cancer</string>
 </resources>
