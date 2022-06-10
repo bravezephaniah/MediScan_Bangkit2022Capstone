@@ -23,6 +23,15 @@ interface ApiService {
         @Field("username") username: String,
         @Field("password") password: String
     ): Call<LoginResponse>
+
+    @FormUrlEncoded
+    @PUT("users")
+    fun updateUser(
+        @Header("Authorization") authorization: String,
+        @Field("username") username: String,
+        @Field("email") email: String,
+        @Field("password") password: String
+    ): Call<UpdateResponse>
 }
 
 class ApiConfig {
