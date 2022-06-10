@@ -68,6 +68,28 @@
 
     </com.google.android.material.textfield.TextInputLayout>
 
+    <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/password_changeusername_inputlayout"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="@+id/username_new_inputlayout"
+            app:layout_constraintStart_toStartOf="@+id/username_new_inputlayout"
+            app:layout_constraintTop_toBottomOf="@+id/username_new_inputlayout"
+            app:passwordToggleEnabled="false"
+            app:startIconDrawable="@drawable/ic_baseline_lock_24"
+            android:layout_marginTop="33dp">
+
+        <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/password_changeusername_edittext"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:inputType="textPassword"
+                android:hint="@string/password_desc"
+                tools:ignore="TextContrastCheck" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
     <ImageView
             android:id="@+id/changeusername_logo"
             android:layout_width="299dp"
@@ -83,10 +105,10 @@
             android:id="@+id/change_username_button"
             android:layout_width="wrap_content"
             android:layout_height="48dp"
-            android:layout_marginTop="28dp"
             android:text="@string/update_default"
-            app:layout_constraintEnd_toEndOf="@+id/username_new_inputlayout"
-            app:layout_constraintTop_toBottomOf="@+id/username_new_inputlayout" />
+            app:layout_constraintEnd_toEndOf="@+id/password_changeusername_inputlayout"
+            app:layout_constraintTop_toBottomOf="@+id/password_changeusername_inputlayout"
+            android:layout_marginTop="28dp" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

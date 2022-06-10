@@ -38,4 +38,6 @@
     <string name="new_username_default">New Username</string>
     <string name="new_email_default">New Email</string>
     <string name="current_email_default">Old Email</string>
+    <string name="fail_change_username">Username tidak bisa sama</string>
+    <string name="email_change_fail">Email tidak bisa sama</string>
 </resources>

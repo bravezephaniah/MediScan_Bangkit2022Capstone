@@ -31,3 +31,12 @@ data class LoginResponse(
     @field:SerializedName("email")
     val email: String? = null
 )
+
+data class UpdateResponse(
+
+    @field:SerializedName("message")
+    val message: String? = null,
+
+    @field:SerializedName("status")
+    val status: String? = null
+)

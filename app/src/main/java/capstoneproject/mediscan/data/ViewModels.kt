@@ -6,6 +6,7 @@ import capstoneproject.mediscan.data.local.UserPreferences
 import capstoneproject.mediscan.data.network.ApiConfig
 import capstoneproject.mediscan.data.network.LoginResponse
 import capstoneproject.mediscan.data.network.RegisterResponse
+import capstoneproject.mediscan.data.network.UpdateResponse
 import kotlinx.coroutines.launch
 import retrofit2.Call
 import retrofit2.Callback
@@ -19,17 +20,18 @@ class MainViewModel(private val pref: UserPreferences): ViewModel() {
     private var _registerResponse = MutableLiveData<RegisterResponse>()
     val registerResponse: LiveData<RegisterResponse> = _registerResponse
 
+    private var _updateResponse = MutableLiveData<UpdateResponse>()
+    val updateResponse: LiveData<UpdateResponse> = _updateResponse
+
     private var _isLoggedIn = MutableLiveData<Boolean>()
     val isLoggedIn: LiveData<Boolean> = _isLoggedIn
 
     fun getToken(): LiveData<String>{
         return pref.getToken().asLiveData()
     }
-
     fun getUsername(): LiveData<String>{
         return pref.getUsername().asLiveData()
     }
-
     fun getEmail(): LiveData<String>{
         return pref.getEmail().asLiveData()
     }
@@ -39,13 +41,11 @@ class MainViewModel(private val pref: UserPreferences): ViewModel() {
             pref.saveToken(token)
         }
     }
-
     fun saveUsername(username: String){
         viewModelScope.launch {
             pref.saveUsername(username)
         }
     }
-
     fun saveEmail(email: String){
         viewModelScope.launch {
             pref.saveEmail(email)
@@ -57,13 +57,11 @@ class MainViewModel(private val pref: UserPreferences): ViewModel() {
             pref.deleteToken()
         }
     }
-
     fun deleteUsername(){
         viewModelScope.launch{
             pref.deleteUsername()
         }
     }
-
     fun deleteEmail(){
         viewModelScope.launch{
             pref.deleteEmail()
@@ -118,6 +116,31 @@ class MainViewModel(private val pref: UserPreferences): ViewModel() {
                 Log.e("MainViewModel", "onFailure: ${t.message}")
             }
 
+        })
+    }
+
+    fun updateUser(token: String, username: String, email: String, password: String){
+        _isLoading.value = true
+        val client = ApiConfig().getApiService().updateUser(token, username, email, password)
+        client.enqueue(object : Callback<UpdateResponse>{
+            override fun onResponse(
+                call: Call<UpdateResponse>,
+                response: Response<UpdateResponse>,
+            ) {
+                _isLoading.value = false
+                if(response.isSuccessful){
+                    _updateResponse.value = response.body()
+                    Log.d(TAG, "onResponseSuccess: ${response.body()?.status} ${response.body()?.message}")
+                }else{
+                    _updateResponse.value = response.body()
+                    Log.e(TAG, "onResponseFailure: ${response.body()?.status} ${response.body()?.message}")
+                }
+            }
+
+            override fun onFailure(call: Call<UpdateResponse>, t: Throwable) {
+                _isLoading.value = false
+                Log.e(TAG, "onFailure: ${t.message}")
+            }
         })
     }
 
