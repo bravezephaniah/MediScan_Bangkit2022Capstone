@@ -2,8 +2,11 @@ package capstoneproject.mediscan.view
 
 import android.content.Context
 import android.content.Intent
+import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.WindowInsets
+import android.view.WindowManager
 import android.widget.Toast
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
@@ -24,6 +27,7 @@ class ChangeUsernameActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityChangeUsernameBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        supportActionBar?.hide()
 
         val viewModel = ViewModelProvider(this,
             ViewModelFactory(UserPreferences.getInstance(dataStore))

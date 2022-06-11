@@ -3,29 +3,24 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/Bangkit_Capstone/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.139" />
-        <entry key="..\:/Bangkit_Capstone/app/src/main/res/drawable/account_background.xml" value="0.139" />
-        <entry key="..\:/Bangkit_Capstone/app/src/main/res/drawable/ic_launcher_background.xml" value="0.139" />
-        <entry key="..\:/Bangkit_Capstone/app/src/main/res/drawable/logout_button.xml" value="0.139" />
-        <entry key="..\:/Bangkit_Capstone/app/src/main/res/layout/activity_cancer.xml" value="0.358695652173913" />
-        <entry key="..\:/Bangkit_Capstone/app/src/main/res/layout/activity_detail.xml" value="0.264" />
-        <entry key="..\:/Bangkit_Capstone/app/src/main/res/layout/activity_healthy.xml" value="0.3484375" />
-        <entry key="..\:/Bangkit_Capstone/app/src/main/res/layout/activity_home.xml" value="0.152" />
-        <entry key="..\:/Bangkit_Capstone/app/src/main/res/layout/activity_login.xml" value="0.22826086956521738" />
-        <entry key="..\:/Bangkit_Capstone/app/src/main/res/layout/activity_main.xml" value="0.22826086956521738" />
-        <entry key="..\:/Bangkit_Capstone/app/src/main/res/layout/activity_sick.xml" value="0.33" />
         <entry key="..\:/Kampus/Bangkit/Capstone/Code/Bangkit_Capstone/app/src/main/res/drawable-v24/baseline_logout_24.xml" value="0.3215" />
+        <entry key="..\:/Kampus/Bangkit/Capstone/Code/Bangkit_Capstone/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.3215" />
+        <entry key="..\:/Kampus/Bangkit/Capstone/Code/Bangkit_Capstone/app/src/main/res/drawable-v24/photo_library-48px.xml" value="0.3215" />
         <entry key="..\:/Kampus/Bangkit/Capstone/Code/Bangkit_Capstone/app/src/main/res/drawable/account_background.xml" value="0.3565" />
         <entry key="..\:/Kampus/Bangkit/Capstone/Code/Bangkit_Capstone/app/src/main/res/drawable/camera_corner.xml" value="0.264" />
         <entry key="..\:/Kampus/Bangkit/Capstone/Code/Bangkit_Capstone/app/src/main/res/drawable/ic_baseline_image_24.xml" value="0.3575" />
         <entry key="..\:/Kampus/Bangkit/Capstone/Code/Bangkit_Capstone/app/src/main/res/drawable/ic_baseline_person_37.xml" value="0.3575" />
+        <entry key="..\:/Kampus/Bangkit/Capstone/Code/Bangkit_Capstone/app/src/main/res/drawable/ic_launcher_background.xml" value="0.3215" />
         <entry key="..\:/Kampus/Bangkit/Capstone/Code/Bangkit_Capstone/app/src/main/res/layout/activity_camera.xml" value="0.1" />
+        <entry key="..\:/Kampus/Bangkit/Capstone/Code/Bangkit_Capstone/app/src/main/res/layout/activity_cancer.xml" value="0.32395833333333335" />
         <entry key="..\:/Kampus/Bangkit/Capstone/Code/Bangkit_Capstone/app/src/main/res/layout/activity_change_email.xml" value="0.35208333333333336" />
         <entry key="..\:/Kampus/Bangkit/Capstone/Code/Bangkit_Capstone/app/src/main/res/layout/activity_change_username.xml" value="0.35208333333333336" />
         <entry key="..\:/Kampus/Bangkit/Capstone/Code/Bangkit_Capstone/app/src/main/res/layout/activity_detail.xml" value="0.5" />
+        <entry key="..\:/Kampus/Bangkit/Capstone/Code/Bangkit_Capstone/app/src/main/res/layout/activity_healthy.xml" value="0.32395833333333335" />
         <entry key="..\:/Kampus/Bangkit/Capstone/Code/Bangkit_Capstone/app/src/main/res/layout/activity_home.xml" value="0.264" />
         <entry key="..\:/Kampus/Bangkit/Capstone/Code/Bangkit_Capstone/app/src/main/res/layout/activity_login.xml" value="0.33" />
-        <entry key="..\:/Kampus/Bangkit/Capstone/Code/Bangkit_Capstone/app/src/main/res/layout/activity_main.xml" value="0.536" />
+        <entry key="..\:/Kampus/Bangkit/Capstone/Code/Bangkit_Capstone/app/src/main/res/layout/activity_main.xml" value="0.33" />
+        <entry key="..\:/Kampus/Bangkit/Capstone/Code/Bangkit_Capstone/app/src/main/res/layout/activity_sick.xml" value="0.32395833333333335" />
         <entry key="..\:/Kampus/Bangkit/Capstone/Code/Bangkit_Capstone/app/src/main/res/layout/activity_signup.xml" value="0.3145833333333333" />
         <entry key="..\:/Kampus/Bangkit/Capstone/Code/Bangkit_Capstone/app/src/main/res/layout/activity_welcome.xml" value="0.3145833333333333" />
         <entry key="..\:/Kampus/Bangkit/Capstone/Code/Bangkit_Capstone/app/src/main/res/xml/network_security_config.xml" value="0.11574074074074074" />

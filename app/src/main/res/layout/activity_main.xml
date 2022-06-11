@@ -25,7 +25,8 @@
             app:layout_constraintTop_toTopOf="@+id/Logo_App"
             android:contentDescription="@string/account_background"
             app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginEnd="32dp" />
+            android:layout_marginEnd="32dp"
+            app:layout_constraintBottom_toBottomOf="@+id/Logo_App" />
 
     <ImageView
             android:layout_width="wrap_content"
@@ -48,7 +49,10 @@
             app:layout_constraintStart_toStartOf="parent"
             android:layout_marginTop="32dp"
             android:contentDescription="@string/camera_corner"
-            tools:ignore="ImageContrastCheck" />
+            tools:ignore="ImageContrastCheck"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginBottom="32dp"
+            app:layout_constraintVertical_bias="0.2" />
 
     <androidx.appcompat.widget.AppCompatImageView
             android:layout_width="0dp"
@@ -73,31 +77,44 @@
             app:layout_constraintTop_toBottomOf="@+id/camera_corner"
             app:layout_constraintEnd_toStartOf="@+id/guideline1"
             android:layout_marginEnd="8dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="24dp"
             app:backgroundTint="#40916C"
             app:tint="#FFFFFF"
             app:fabCustomSize="50dp"
-            app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginStart="108dp"
             android:contentDescription="@string/camera_desc"
             android:focusable="true" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            app:srcCompat="@drawable/photo_library"
+            android:id="@+id/button_to_gallery"
+            app:layout_constraintStart_toStartOf="@+id/guideline1"
+            android:layout_marginStart="8dp"
+            android:focusable="true"
+            app:backgroundTint="#40916C"
+            app:tint="#FFFFFF"
+            app:fabCustomSize="50dp"
+            app:layout_constraintTop_toTopOf="@+id/button_to_camera"
+            android:contentDescription="@string/gallery_desc" />
 
     <Button
             android:text="@string/upload_desc"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/button_to_gallery"
+            android:id="@+id/button_to_analyze"
             app:cornerRadius="8dp"
-            app:layout_constraintTop_toTopOf="@+id/button_to_camera"
-            app:layout_constraintBottom_toBottomOf="@+id/button_to_camera"
             android:textColorLink="#FFFFFF"
             android:backgroundTint="#40916C"
             app:icon="@drawable/ic_baseline_file_upload_24"
             app:iconGravity="textEnd"
             app:iconPadding="0dp"
-            app:layout_constraintStart_toEndOf="@+id/button_to_camera"
-            android:layout_marginStart="16dp"
-            tools:ignore="TextContrastCheck" />
+            tools:ignore="TextContrastCheck"
+            app:layout_constraintTop_toBottomOf="@+id/button_to_camera"
+            android:layout_marginTop="16dp"
+            app:layout_constraintEnd_toEndOf="@+id/button_to_gallery"
+            app:layout_constraintStart_toStartOf="@+id/button_to_camera" />
 
     <androidx.constraintlayout.widget.Guideline
             android:layout_width="wrap_content"
