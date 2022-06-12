@@ -4,13 +4,11 @@ import android.Manifest
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.net.Uri
-import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.WindowInsets
-import android.view.WindowManager
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.app.ActivityCompat
@@ -25,6 +23,9 @@ import capstoneproject.mediscan.data.ViewModelFactory
 import capstoneproject.mediscan.data.local.UserPreferences
 import capstoneproject.mediscan.databinding.ActivityMainBinding
 import capstoneproject.mediscan.helper.rotateBitmap
+import org.tensorflow.lite.DataType
+import org.tensorflow.lite.support.image.TensorImage
+import org.tensorflow.lite.support.tensorbuffer.TensorBuffer
 import java.io.File
 
 private val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = "session")
@@ -116,6 +117,38 @@ class MainActivity : AppCompatActivity() {
                 finish()
             }
         }
+    }
+
+    private fun analyzeImage(bitmap: Bitmap) {
+        val model = ConvertedModel.newInstance(this)
+
+// Creates inputs for reference.
+        val inputFeature0 = TensorBuffer.createFixedSize(intArrayOf(1, 200, 150, 3), DataType.FLOAT32)
+        image = Bitmap.createScaledBitmap(bitmap, 400, 300, true)
+        inputFeature0.loadBuffer(TensorImage.fromBitmap(image).buffer)
+
+// Runs model inference and gets result.
+        val outputs = model.process(inputFeature0)
+        val outputFeature0 = outputs.outputFeature0AsTensorBuffer
+
+        outputResult = getMax(outputFeature0.floatArray).toString()
+
+// Releases model resources if no longer used.
+        model.close()
+    }
+
+    private fun getMax(arr: FloatArray): Int{
+        var index = 0
+        var min = 0.0f
+
+        for (i in 0..2){
+            if(arr[i]>min){
+                index = i
+                min = arr[i]
+            }
+        }
+
+        return index
     }
 
     companion object {
