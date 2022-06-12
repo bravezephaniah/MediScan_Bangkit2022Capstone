@@ -50,4 +50,5 @@
     <string name="image_null">Pilih gambar terlebih dahulu</string>
     <string name="about_us">MediScan is an app that help you to make the right decision about your health. We offer a cheap, mobile and easy method for health screening with your smartphone.</string>
     <string name="history_data">History</string>
+    <string name="URI_nearest_hospital">geo:0,0?q=Rumah+sakit+terdekat</string>
 </resources>
