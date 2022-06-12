@@ -9,3 +9,5 @@ MediScan is Skin Cancer Classifier App.
 4. Muhammad Rafli Raihansyah (A7012F1301) - (MD) - Universitas Telkom
 5. Denis Aditya Fernanda (C2245F2172) - (CC) - Universitas Kristen Satya Wacana
 6. Marcelino Tanus (C2242J2154) - (CC) - Universitas Kristen Krida Wacana
+
+### Original MD-Dev Repo : https://github.com/AlifPD/Bangkit_Capstone
