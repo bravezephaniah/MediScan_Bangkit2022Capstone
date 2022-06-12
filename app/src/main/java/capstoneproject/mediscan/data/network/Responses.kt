@@ -64,3 +64,15 @@ data class GetHistoryResponseItem(
     @field:SerializedName("id")
     val id: Int? = null
 )
+
+data class UploadHistoryResponse(
+
+    @field:SerializedName("message")
+    val message: String? = null,
+
+    @field:SerializedName("url")
+    val url: String? = null,
+
+    @field:SerializedName("status")
+    val status: String? = null
+)

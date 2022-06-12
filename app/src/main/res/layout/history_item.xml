@@ -6,7 +6,9 @@
         android:layout_height="wrap_content"
         android:id="@+id/cv_history"
         app:contentPadding="4dp"
-        app:cardCornerRadius="14dp">
+        app:cardCornerRadius="14dp"
+        android:padding="4dp"
+        android:layout_margin="4dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"

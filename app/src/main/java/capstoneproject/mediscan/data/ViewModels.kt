@@ -5,6 +5,8 @@ import androidx.lifecycle.*
 import capstoneproject.mediscan.data.local.UserPreferences
 import capstoneproject.mediscan.data.network.*
 import kotlinx.coroutines.launch
+import okhttp3.MultipartBody
+import okhttp3.RequestBody
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -25,6 +27,9 @@ class MainViewModel(private val pref: UserPreferences): ViewModel() {
 
     private var _getHistoryResponse = MutableLiveData<List<GetHistoryResponseItem>?>()
     val getHistoryResponse: LiveData<List<GetHistoryResponseItem>?> = _getHistoryResponse
+
+    private var _uploadHistoryResponse = MutableLiveData<UploadHistoryResponse>()
+    val uploadHistoryResponse: LiveData<UploadHistoryResponse> = _uploadHistoryResponse
 
     fun getToken(): LiveData<String>{
         return pref.getToken().asLiveData()
@@ -166,6 +171,32 @@ class MainViewModel(private val pref: UserPreferences): ViewModel() {
                 _isLoading.value = false
                 Log.e(TAG, "onFailure: ${t.message}")
             }
+        })
+    }
+
+    fun uploadHistory(token: String, result: String, image: MultipartBody.Part){
+        _isLoading.value = true
+        val uploadStoryClient = ApiConfig().getApiService().uploadHistory("Bearer $token", result, image)
+        uploadStoryClient.enqueue(object : Callback<UploadHistoryResponse>{
+            override fun onResponse(
+                call: Call<UploadHistoryResponse>,
+                response: Response<UploadHistoryResponse>
+            ) {
+                if(response.isSuccessful){
+                    _isLoading.value = false
+                    _uploadHistoryResponse.value = response.body()
+                    Log.d(TAG, "onResponseSuccess: ${response.body()?.status} ${response.body()?.message}")
+                }else{
+                    _isLoading.value = false
+                    Log.e(TAG, "onResponseFailure: ${response.body()?.status} ${response.body()?.message}")
+                }
+            }
+
+            override fun onFailure(call: Call<UploadHistoryResponse>, t: Throwable) {
+                _isLoading.value = false
+                Log.e("MainViewModel", "onFailure: ${t.message}")
+            }
+
         })
     }
 

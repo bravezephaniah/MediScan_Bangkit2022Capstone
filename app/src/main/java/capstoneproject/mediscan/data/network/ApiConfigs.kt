@@ -1,7 +1,9 @@
 package capstoneproject.mediscan.data.network
 
 import androidx.viewbinding.BuildConfig
+import okhttp3.MultipartBody
 import okhttp3.OkHttpClient
+import okhttp3.RequestBody
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Call
 import retrofit2.Retrofit
@@ -32,6 +34,14 @@ interface ApiService {
         @Field("email") email: String,
         @Field("password") password: String
     ): Call<UpdateResponse>
+
+    @Multipart
+    @POST("history")
+    fun uploadHistory(
+        @Header("Authorization") authorization: String,
+        @Part("result") result: String,
+        @Part file: MultipartBody.Part,
+    ): Call<UploadHistoryResponse>
 
     @GET("history")
     fun getHistory(

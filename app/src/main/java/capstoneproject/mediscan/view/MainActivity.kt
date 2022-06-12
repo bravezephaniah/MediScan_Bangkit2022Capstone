@@ -1,7 +1,6 @@
 package capstoneproject.mediscan.view
 
 import android.Manifest
-import android.R.attr.bitmap
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
@@ -23,13 +22,16 @@ import capstoneproject.mediscan.data.MainViewModel
 import capstoneproject.mediscan.data.ViewModelFactory
 import capstoneproject.mediscan.data.local.UserPreferences
 import capstoneproject.mediscan.databinding.ActivityMainBinding
+import capstoneproject.mediscan.helper.reduceImageFile
 import capstoneproject.mediscan.helper.rotateBitmap
 import capstoneproject.mediscan.helper.uriToFile
 import capstoneproject.mediscan.ml.ConvertedModel
+import okhttp3.MediaType.Companion.toMediaTypeOrNull
+import okhttp3.MultipartBody
+import okhttp3.RequestBody.Companion.asRequestBody
 import org.tensorflow.lite.DataType
 import org.tensorflow.lite.support.image.TensorImage
 import org.tensorflow.lite.support.tensorbuffer.TensorBuffer
-import java.io.ByteArrayOutputStream
 import java.io.File
 
 
@@ -39,6 +41,9 @@ class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private lateinit var image: Bitmap
     private var isImageChosen = false
+    private var getFile: File? = null
+    private lateinit var analyzeResult: String
+    private lateinit var viewModel: MainViewModel
 
     private val cameraLauncher = registerForActivityResult(
         ActivityResultContracts.StartActivityForResult()
@@ -46,6 +51,8 @@ class MainActivity : AppCompatActivity() {
         if (it.resultCode == CAMERA_X_RESULT) {
             val myFile = it.data?.getSerializableExtra("picture") as File
             val isBackCamera = it.data?.getBooleanExtra("isBackCamera", true) as Boolean
+
+            getFile = myFile
 
             val result = rotateBitmap(
                 BitmapFactory.decodeFile(myFile.path),
@@ -66,6 +73,8 @@ class MainActivity : AppCompatActivity() {
             val selectedImg: Uri = it.data?.data as Uri
             val myFile = uriToFile(selectedImg, this)
 
+            getFile = myFile
+
             image = BitmapFactory.decodeFile(myFile.path)
 
             binding.imgviewCaptured.setImageURI(selectedImg)
@@ -80,7 +89,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
         supportActionBar?.hide()
 
-        val viewModel = ViewModelProvider(this,
+        viewModel = ViewModelProvider(this,
             ViewModelFactory(UserPreferences.getInstance(dataStore)))[MainViewModel::class.java]
 
         if (!allPermissionsGranted()) {
@@ -101,21 +110,26 @@ class MainActivity : AppCompatActivity() {
             if (!isImageChosen) {
                 Toast.makeText(this, getString(R.string.image_null), Toast.LENGTH_SHORT).show()
             } else {
-                when (analyzeImage(image)) {
+                analyzeResult = analyzeImage(image)
+                uploadStory()
+                when (analyzeResult) {
                     "0" -> {
                         val intent = Intent(this@MainActivity, HealthyActivity::class.java)
                         intent.putExtra("IMAGE", image)
                         startActivity(intent)
+                        finish()
                     }
                     "1" -> {
                         val intent = Intent(this@MainActivity, CancerActivity::class.java)
                         intent.putExtra("IMAGE", image)
                         startActivity(intent)
+                        finish()
                     }
                     "2" -> {
                         val intent = Intent(this@MainActivity, SickActivity::class.java)
                         intent.putExtra("IMAGE", image)
                         startActivity(intent)
+                        finish()
                     }
                 }
             }
@@ -188,6 +202,24 @@ class MainActivity : AppCompatActivity() {
         }
 
         return index
+    }
+
+    private fun uploadStory() {
+        if (getFile != null) {
+            val file = (reduceImageFile(getFile as File))
+            val requestImageFile = file.asRequestBody("image/jpeg".toMediaTypeOrNull())
+            val historyMultipart: MultipartBody.Part = MultipartBody.Part.createFormData(
+                "file",
+                file.name,
+                requestImageFile
+            )
+
+            viewModel.getToken().observe(this) {
+                viewModel.uploadHistory(it, analyzeResult, historyMultipart)
+            }
+        } else {
+            Toast.makeText(this, getString(R.string.image_null), Toast.LENGTH_SHORT).show()
+        }
     }
 
     companion object {
