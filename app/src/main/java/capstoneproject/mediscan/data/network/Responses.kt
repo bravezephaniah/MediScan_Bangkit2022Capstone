@@ -40,3 +40,27 @@ data class UpdateResponse(
     @field:SerializedName("status")
     val status: String? = null
 )
+
+data class GetHistoryResponse(
+
+    @field:SerializedName("GetHistoryResponse")
+    val getHistoryResponse: List<GetHistoryResponseItem?>? = null
+)
+
+data class GetHistoryResponseItem(
+
+    @field:SerializedName("result")
+    val result: String? = null,
+
+    @field:SerializedName("createdAt")
+    val createdAt: String? = null,
+
+    @field:SerializedName("user_id")
+    val userId: Int? = null,
+
+    @field:SerializedName("img_url")
+    val imgUrl: String? = null,
+
+    @field:SerializedName("id")
+    val id: Int? = null
+)

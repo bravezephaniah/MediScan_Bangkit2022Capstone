@@ -36,12 +36,13 @@
             android:layout_height="198dp"
             android:layout_marginTop="16dp"
             android:fontFamily="@font/poppins"
-            android:text="@string/lorem_ipsum"
+            android:text="@string/about_us"
             android:textColor="#2D6A4F"
             android:textSize="18sp"
             app:layout_constraintEnd_toEndOf="@+id/cardView"
             app:layout_constraintStart_toStartOf="@+id/cardView"
-            app:layout_constraintTop_toBottomOf="@+id/About_Header" />
+            app:layout_constraintTop_toBottomOf="@+id/About_Header"
+            android:gravity="center" />
 
     <TextView
             android:id="@+id/history_header"
@@ -71,10 +72,24 @@
             app:layout_constraintTop_toBottomOf="@+id/history_header"
             android:backgroundTint="@color/grey_mile">
 
-        <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rv_history"
+        <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent" />
+                android:layout_height="match_parent">
+
+            <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_history"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginBottom="16dp" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
     </androidx.cardview.widget.CardView>
 
     <Button

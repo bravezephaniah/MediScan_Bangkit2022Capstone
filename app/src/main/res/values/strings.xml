@@ -48,4 +48,6 @@
     <string name="cancer_desc">Based on our analyzation, your skin feature is considered as a probable cancer cell. We suggest you to contact nearby hospital to get a medical treatment.</string>
     <string name="not_cancer">Not Cancer</string>
     <string name="image_null">Pilih gambar terlebih dahulu</string>
+    <string name="about_us">MediScan is an app that help you to make the right decision about your health. We offer a cheap, mobile and easy method for health screening with your smartphone.</string>
+    <string name="history_data">History</string>
 </resources>

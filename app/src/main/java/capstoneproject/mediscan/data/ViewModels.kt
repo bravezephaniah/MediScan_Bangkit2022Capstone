@@ -3,10 +3,7 @@ package capstoneproject.mediscan.data
 import android.util.Log
 import androidx.lifecycle.*
 import capstoneproject.mediscan.data.local.UserPreferences
-import capstoneproject.mediscan.data.network.ApiConfig
-import capstoneproject.mediscan.data.network.LoginResponse
-import capstoneproject.mediscan.data.network.RegisterResponse
-import capstoneproject.mediscan.data.network.UpdateResponse
+import capstoneproject.mediscan.data.network.*
 import kotlinx.coroutines.launch
 import retrofit2.Call
 import retrofit2.Callback
@@ -25,6 +22,9 @@ class MainViewModel(private val pref: UserPreferences): ViewModel() {
 
     private var _isLoggedIn = MutableLiveData<Boolean>()
     val isLoggedIn: LiveData<Boolean> = _isLoggedIn
+
+    private var _getHistoryResponse = MutableLiveData<List<GetHistoryResponseItem>?>()
+    val getHistoryResponse: LiveData<List<GetHistoryResponseItem>?> = _getHistoryResponse
 
     fun getToken(): LiveData<String>{
         return pref.getToken().asLiveData()
@@ -138,6 +138,31 @@ class MainViewModel(private val pref: UserPreferences): ViewModel() {
             }
 
             override fun onFailure(call: Call<UpdateResponse>, t: Throwable) {
+                _isLoading.value = false
+                Log.e(TAG, "onFailure: ${t.message}")
+            }
+        })
+    }
+
+    fun getHistory(token: String){
+        _isLoading.value = true
+        val client = ApiConfig().getApiService().getHistory(token)
+        client.enqueue(object : Callback<List<GetHistoryResponseItem>>{
+            override fun onResponse(
+                call: Call<List<GetHistoryResponseItem>>,
+                response: Response<List<GetHistoryResponseItem>>,
+            ) {
+                _isLoading.value = false
+                if(response.isSuccessful){
+                    _getHistoryResponse.value = response.body()
+                    Log.d(TAG, "onResponseSuccess: ${response.body()}")
+                }else{
+                    _getHistoryResponse.value = response.body()
+                    Log.e(TAG, "onResponseFailure")
+                }
+            }
+
+            override fun onFailure(call: Call<List<GetHistoryResponseItem>>, t: Throwable) {
                 _isLoading.value = false
                 Log.e(TAG, "onFailure: ${t.message}")
             }

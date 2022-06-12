@@ -32,18 +32,23 @@ interface ApiService {
         @Field("email") email: String,
         @Field("password") password: String
     ): Call<UpdateResponse>
+
+    @GET("history")
+    fun getHistory(
+        @Header("Authorization") authorization: String
+    ): Call<List<GetHistoryResponseItem>>
 }
 
 class ApiConfig {
     fun getApiService(): ApiService {
         val loggingInterceptor =
-            if (BuildConfig.DEBUG) {
+//            if (BuildConfig.DEBUG) {
             HttpLoggingInterceptor().setLevel(
                 HttpLoggingInterceptor.Level.BODY)
-        } else {
-            HttpLoggingInterceptor().setLevel(
-                HttpLoggingInterceptor.Level.NONE)
-        }
+//        } else {
+//            HttpLoggingInterceptor().setLevel(
+//                HttpLoggingInterceptor.Level.NONE)
+//        }
 
         val client = OkHttpClient.Builder()
             .addInterceptor(loggingInterceptor)
