@@ -23,6 +23,8 @@ import capstoneproject.mediscan.data.ViewModelFactory
 import capstoneproject.mediscan.data.local.UserPreferences
 import capstoneproject.mediscan.databinding.ActivityMainBinding
 import capstoneproject.mediscan.helper.rotateBitmap
+import capstoneproject.mediscan.helper.uriToFile
+import capstoneproject.mediscan.ml.ConvertedModel
 import org.tensorflow.lite.DataType
 import org.tensorflow.lite.support.image.TensorImage
 import org.tensorflow.lite.support.tensorbuffer.TensorBuffer
@@ -32,6 +34,7 @@ private val Context.dataStore: DataStore<Preferences> by preferencesDataStore(na
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
+    private lateinit var image: Bitmap
 
     private val cameraLauncher = registerForActivityResult(
         ActivityResultContracts.StartActivityForResult()
@@ -45,6 +48,8 @@ class MainActivity : AppCompatActivity() {
                 isBackCamera
             )
 
+            image = result
+
             binding.imgviewCaptured.setImageBitmap(result)
         }
     }
@@ -53,6 +58,9 @@ class MainActivity : AppCompatActivity() {
     ) {
         if (it.resultCode == RESULT_OK) {
             val selectedImg: Uri = it.data?.data as Uri
+            val myFile = uriToFile(selectedImg, this)
+
+            image = BitmapFactory.decodeFile(myFile.path)
 
             binding.imgviewCaptured.setImageURI(selectedImg)
         }
@@ -81,6 +89,7 @@ class MainActivity : AppCompatActivity() {
             val intent = Intent(this@MainActivity, DetailActivity::class.java)
             startActivity(intent)
         }
+        binding.buttonToAnalyze.setOnClickListener { analyzeImage(image) }
     }
 
     private fun startCameraX() {
@@ -123,7 +132,8 @@ class MainActivity : AppCompatActivity() {
         val model = ConvertedModel.newInstance(this)
 
 // Creates inputs for reference.
-        val inputFeature0 = TensorBuffer.createFixedSize(intArrayOf(1, 200, 150, 3), DataType.FLOAT32)
+        val inputFeature0 =
+            TensorBuffer.createFixedSize(intArrayOf(1, 200, 150, 3), DataType.FLOAT32)
         image = Bitmap.createScaledBitmap(bitmap, 400, 300, true)
         inputFeature0.loadBuffer(TensorImage.fromBitmap(image).buffer)
 
@@ -131,18 +141,18 @@ class MainActivity : AppCompatActivity() {
         val outputs = model.process(inputFeature0)
         val outputFeature0 = outputs.outputFeature0AsTensorBuffer
 
-        outputResult = getMax(outputFeature0.floatArray).toString()
+        var outputResult = getMax(outputFeature0.floatArray).toString()
 
 // Releases model resources if no longer used.
         model.close()
     }
 
-    private fun getMax(arr: FloatArray): Int{
+    private fun getMax(arr: FloatArray): Int {
         var index = 0
         var min = 0.0f
 
-        for (i in 0..2){
-            if(arr[i]>min){
+        for (i in 0..2) {
+            if (arr[i] > min) {
                 index = i
                 min = arr[i]
             }
