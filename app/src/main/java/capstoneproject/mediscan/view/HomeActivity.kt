@@ -4,6 +4,8 @@ import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
+import android.widget.Toast
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.preferencesDataStore
@@ -65,8 +67,44 @@ class HomeActivity : AppCompatActivity() {
         val layoutManager = GridLayoutManager(this, 3)
         binding.rvHistory.layoutManager = layoutManager
 
-        val userAdapter = HistoryAdapter(listHistory)
-        binding.rvHistory.adapter = userAdapter
+        val historyAdapter = HistoryAdapter(listHistory)
+        binding.rvHistory.adapter = historyAdapter
+
+        historyAdapter.setOnItemClickCallback(object : HistoryAdapter.OnItemClickCallback {
+            override fun onItemClicked(data: GetHistoryResponseItem?) {
+                Toast.makeText(this@HomeActivity, "${data?.result}", Toast.LENGTH_SHORT).show()
+                when (data?.result) {
+                    "\"0\""  -> {
+                        val intent = Intent(this@HomeActivity, HealthyActivity::class.java)
+                        intent.putExtra("IMAGE_RESULT", data.imgUrl)
+                        intent.putExtra("ISRESULT", true)
+                        intent.putExtra("ID", data.id)
+                        Log.d("HomeActivity", "onItemClicked: ${data.imgUrl}, ${data.id}")
+                        startActivity(intent)
+                        finish()
+                    }
+                    "\"1\"" -> {
+                        val intent = Intent(this@HomeActivity, CancerActivity::class.java)
+                        intent.putExtra("IMAGE_RESULT", data.imgUrl)
+                        intent.putExtra("ISRESULT", true)
+                        intent.putExtra("ID", data.id)
+                        Log.d("HomeActivity", "onItemClicked: ${data.imgUrl}, ${data.id}")
+                        startActivity(intent)
+                        finish()
+                    }
+                    "\"2\""  -> {
+                        val intent = Intent(this@HomeActivity, SickActivity::class.java)
+                        intent.putExtra("IMAGE_RESULT", data.imgUrl)
+                        intent.putExtra("ISRESULT", true)
+                        intent.putExtra("ID", data.id)
+                        Log.d("HomeActivity", "onItemClicked: ${data.imgUrl}, ${data.id}")
+                        startActivity(intent)
+                        finish()
+                    }
+                }
+            }
+
+        })
     }
 
     companion object {

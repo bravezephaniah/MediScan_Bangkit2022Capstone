@@ -47,6 +47,12 @@ interface ApiService {
     fun getHistory(
         @Header("Authorization") authorization: String
     ): Call<List<GetHistoryResponseItem>>
+
+    @DELETE("history/{id}")
+    fun deleteHistory(
+        @Header("Authorization") authorization: String,
+        @Path("id") id: String
+    ): Call<DeleteHistoryResponse>
 }
 
 class ApiConfig {

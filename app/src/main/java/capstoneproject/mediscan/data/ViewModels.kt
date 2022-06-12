@@ -31,6 +31,9 @@ class MainViewModel(private val pref: UserPreferences): ViewModel() {
     private var _uploadHistoryResponse = MutableLiveData<UploadHistoryResponse>()
     val uploadHistoryResponse: LiveData<UploadHistoryResponse> = _uploadHistoryResponse
 
+    private var _deleteHistoryResponse = MutableLiveData<DeleteHistoryResponse>()
+    val deleteHistoryResponse: LiveData<DeleteHistoryResponse> = _deleteHistoryResponse
+
     fun getToken(): LiveData<String>{
         return pref.getToken().asLiveData()
     }
@@ -193,6 +196,32 @@ class MainViewModel(private val pref: UserPreferences): ViewModel() {
             }
 
             override fun onFailure(call: Call<UploadHistoryResponse>, t: Throwable) {
+                _isLoading.value = false
+                Log.e("MainViewModel", "onFailure: ${t.message}")
+            }
+
+        })
+    }
+
+    fun deleteHistory(token: String, id: String){
+        _isLoading.value = true
+        val uploadStoryClient = ApiConfig().getApiService().deleteHistory("Bearer $token", id)
+        uploadStoryClient.enqueue(object : Callback<DeleteHistoryResponse>{
+            override fun onResponse(
+                call: Call<DeleteHistoryResponse>,
+                response: Response<DeleteHistoryResponse>
+            ) {
+                if(response.isSuccessful){
+                    _isLoading.value = false
+                    _deleteHistoryResponse.value = response.body()
+                    Log.d(TAG, "onResponseSuccess: ${response.body()?.status} ${response.body()?.message}")
+                }else{
+                    _isLoading.value = false
+                    Log.e(TAG, "onResponseFailure: ${response.body()?.status} ${response.body()?.message}")
+                }
+            }
+
+            override fun onFailure(call: Call<DeleteHistoryResponse>, t: Throwable) {
                 _isLoading.value = false
                 Log.e("MainViewModel", "onFailure: ${t.message}")
             }

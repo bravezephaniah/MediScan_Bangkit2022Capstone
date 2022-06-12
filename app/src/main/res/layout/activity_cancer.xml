@@ -47,7 +47,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/user_background"
-        app:srcCompat="@drawable/ic_baseline_image_24" />
+        app:srcCompat="@drawable/ic_baseline_image_24"
+            android:contentDescription="@string/result_image" />
 
     <androidx.cardview.widget.CardView
         android:id="@+id/result_cv"
@@ -113,11 +114,30 @@
                     app:layout_constraintStart_toStartOf="@+id/result_desc"
                     app:layout_constraintEnd_toEndOf="@+id/result_desc"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintVertical_bias="0.76" />
+                    app:layout_constraintVertical_bias="0.76"
+                    android:contentDescription="@string/button_to_hospital" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.cardview.widget.CardView>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            app:srcCompat="@drawable/ic_baseline_delete_24"
+            android:id="@+id/button_delete_history"
+            app:layout_constraintStart_toEndOf="@+id/result_image"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintVertical_bias="0.52"
+            android:elevation="20dp"
+            app:elevation="20dp"
+            android:focusable="true"
+            app:backgroundTint="#40916C"
+            app:tint="#FFFFFF"
+            android:contentDescription="@string/delete_history"
+            android:visibility="gone"/>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

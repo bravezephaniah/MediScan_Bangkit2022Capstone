@@ -76,3 +76,12 @@ data class UploadHistoryResponse(
     @field:SerializedName("status")
     val status: String? = null
 )
+
+data class DeleteHistoryResponse(
+
+    @field:SerializedName("message")
+    val message: String? = null,
+
+    @field:SerializedName("status")
+    val status: String? = null
+)

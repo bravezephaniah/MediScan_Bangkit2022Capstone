@@ -10,6 +10,16 @@ import capstoneproject.mediscan.data.network.GetHistoryResponseItem
 import com.bumptech.glide.Glide
 
 class HistoryAdapter(private val listHistory: List<GetHistoryResponseItem?>?): RecyclerView.Adapter<HistoryAdapter.ViewHolder>() {
+    private lateinit var onItemClickCallback: OnItemClickCallback
+
+    interface OnItemClickCallback {
+        fun onItemClicked(data: GetHistoryResponseItem?)
+    }
+
+    fun setOnItemClickCallback(onItemClickCallback: OnItemClickCallback) {
+        this.onItemClickCallback = onItemClickCallback
+    }
+
     class ViewHolder(view: View): RecyclerView.ViewHolder(view) {
         val imgHistory: ImageView = itemView.findViewById(R.id.img_history)
     }
@@ -23,6 +33,10 @@ class HistoryAdapter(private val listHistory: List<GetHistoryResponseItem?>?): R
         Glide.with(holder.itemView.context)
             .load(listHistory?.get(position)?.imgUrl)
             .into(holder.imgHistory)
+
+        holder.itemView.setOnClickListener {
+            onItemClickCallback.onItemClicked(listHistory?.get(holder.adapterPosition))
+        }
     }
 
     override fun getItemCount(): Int {
