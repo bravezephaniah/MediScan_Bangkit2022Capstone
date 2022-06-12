@@ -72,7 +72,6 @@ class HomeActivity : AppCompatActivity() {
 
         historyAdapter.setOnItemClickCallback(object : HistoryAdapter.OnItemClickCallback {
             override fun onItemClicked(data: GetHistoryResponseItem?) {
-                Toast.makeText(this@HomeActivity, "${data?.result}", Toast.LENGTH_SHORT).show()
                 when (data?.result) {
                     "\"0\""  -> {
                         val intent = Intent(this@HomeActivity, HealthyActivity::class.java)

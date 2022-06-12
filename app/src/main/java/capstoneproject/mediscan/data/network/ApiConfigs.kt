@@ -3,7 +3,6 @@ package capstoneproject.mediscan.data.network
 import androidx.viewbinding.BuildConfig
 import okhttp3.MultipartBody
 import okhttp3.OkHttpClient
-import okhttp3.RequestBody
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Call
 import retrofit2.Retrofit
@@ -58,13 +57,13 @@ interface ApiService {
 class ApiConfig {
     fun getApiService(): ApiService {
         val loggingInterceptor =
-//            if (BuildConfig.DEBUG) {
+            if (BuildConfig.DEBUG) {
             HttpLoggingInterceptor().setLevel(
                 HttpLoggingInterceptor.Level.BODY)
-//        } else {
-//            HttpLoggingInterceptor().setLevel(
-//                HttpLoggingInterceptor.Level.NONE)
-//        }
+        } else {
+            HttpLoggingInterceptor().setLevel(
+                HttpLoggingInterceptor.Level.NONE)
+        }
 
         val client = OkHttpClient.Builder()
             .addInterceptor(loggingInterceptor)
