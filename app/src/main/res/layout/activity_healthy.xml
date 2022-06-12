@@ -97,17 +97,17 @@
                     app:layout_constraintTop_toBottomOf="@+id/result_header" />
 
                 <TextView
-                    android:id="@+id/result_desc"
-                    android:layout_width="372dp"
-                    android:layout_height="156dp"
-                    android:layout_marginTop="12dp"
-                    android:text="@string/lorem_ipsum"
-                    android:textColor="@color/green_mile"
-                    android:textSize="28sp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.486"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/result_suggestion" />
+                        android:id="@+id/result_desc"
+                        android:layout_width="372dp"
+                        android:layout_height="156dp"
+                        android:layout_marginTop="12dp"
+                        android:text="@string/lorem_ipsum"
+                        android:textColor="@color/green_mile"
+                        android:textSize="18sp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.486"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/result_suggestion" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 

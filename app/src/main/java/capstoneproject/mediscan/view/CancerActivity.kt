@@ -24,7 +24,7 @@ class CancerActivity : AppCompatActivity() {
             .load(data)
             .into(binding.resultImage)
 
-        binding.hospitalBtn.setOnClickListener{
+        binding.hospitalBtnCancer.setOnClickListener{
             val gmmIntentUri = Uri.parse(getString(R.string.URI_nearest_hospital))
             val mapIntent = Intent(Intent.ACTION_VIEW, gmmIntentUri)
             mapIntent.setPackage("com.google.android.apps.maps")

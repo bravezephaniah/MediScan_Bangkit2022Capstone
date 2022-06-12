@@ -5,7 +5,6 @@ import android.graphics.Bitmap
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Toast
 import capstoneproject.mediscan.R
 import capstoneproject.mediscan.databinding.ActivitySickBinding
 import com.bumptech.glide.Glide
@@ -24,7 +23,7 @@ class SickActivity : AppCompatActivity() {
             .load(data)
             .into(binding.resultImage)
 
-        binding.hospitalBtn.setOnClickListener{
+        binding.hospitalBtnOther.setOnClickListener{
             val gmmIntentUri = Uri.parse(getString(R.string.URI_nearest_hospital))
             val mapIntent = Intent(Intent.ACTION_VIEW, gmmIntentUri)
             mapIntent.setPackage("com.google.android.apps.maps")
