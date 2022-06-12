@@ -29,6 +29,7 @@ class LoginActivity : AppCompatActivity() {
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
         supportActionBar?.hide()
+
         val viewModel = ViewModelProvider(this,
             ViewModelFactory(UserPreferences.getInstance(dataStore)))[MainViewModel::class.java]
 
@@ -47,7 +48,7 @@ class LoginActivity : AppCompatActivity() {
 
                     startActivity(intent)
                     finish()
-                }else{
+                } else {
                     Toast.makeText(
                         this,
                         "Harap Coba Lagi",
@@ -58,7 +59,7 @@ class LoginActivity : AppCompatActivity() {
                 }
             }
         }
-        binding.redirectSignup.setOnClickListener{
+        binding.redirectSignup.setOnClickListener {
             startActivity(Intent(this, SignupActivity::class.java))
         }
     }

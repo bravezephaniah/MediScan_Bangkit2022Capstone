@@ -1,16 +1,17 @@
 package capstoneproject.mediscan.view
 
 import android.Manifest
+import android.R.attr.bitmap
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.net.Uri
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.datastore.core.DataStore
@@ -28,13 +29,16 @@ import capstoneproject.mediscan.ml.ConvertedModel
 import org.tensorflow.lite.DataType
 import org.tensorflow.lite.support.image.TensorImage
 import org.tensorflow.lite.support.tensorbuffer.TensorBuffer
+import java.io.ByteArrayOutputStream
 import java.io.File
+
 
 private val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = "session")
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private lateinit var image: Bitmap
+    private var isImageChosen = false
 
     private val cameraLauncher = registerForActivityResult(
         ActivityResultContracts.StartActivityForResult()
@@ -51,6 +55,8 @@ class MainActivity : AppCompatActivity() {
             image = result
 
             binding.imgviewCaptured.setImageBitmap(result)
+
+            isImageChosen = true
         }
     }
     private val galleryLauncher = registerForActivityResult(
@@ -63,6 +69,8 @@ class MainActivity : AppCompatActivity() {
             image = BitmapFactory.decodeFile(myFile.path)
 
             binding.imgviewCaptured.setImageURI(selectedImg)
+
+            isImageChosen = true
         }
     }
 
@@ -89,7 +97,29 @@ class MainActivity : AppCompatActivity() {
             val intent = Intent(this@MainActivity, DetailActivity::class.java)
             startActivity(intent)
         }
-        binding.buttonToAnalyze.setOnClickListener { analyzeImage(image) }
+        binding.buttonToAnalyze.setOnClickListener {
+            if (!isImageChosen) {
+                Toast.makeText(this, getString(R.string.image_null), Toast.LENGTH_SHORT).show()
+            } else {
+                when (analyzeImage(image)) {
+                    "0" -> {
+                        val intent = Intent(this@MainActivity, HealthyActivity::class.java)
+                        intent.putExtra("IMAGE", image)
+                        startActivity(intent)
+                    }
+                    "1" -> {
+                        val intent = Intent(this@MainActivity, CancerActivity::class.java)
+                        intent.putExtra("IMAGE", image)
+                        startActivity(intent)
+                    }
+                    "2" -> {
+                        val intent = Intent(this@MainActivity, SickActivity::class.java)
+                        intent.putExtra("IMAGE", image)
+                        startActivity(intent)
+                    }
+                }
+            }
+        }
     }
 
     private fun startCameraX() {
@@ -128,23 +158,22 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun analyzeImage(bitmap: Bitmap) {
+    private fun analyzeImage(bitmap: Bitmap): String {
         val model = ConvertedModel.newInstance(this)
 
-// Creates inputs for reference.
         val inputFeature0 =
             TensorBuffer.createFixedSize(intArrayOf(1, 200, 150, 3), DataType.FLOAT32)
         image = Bitmap.createScaledBitmap(bitmap, 400, 300, true)
         inputFeature0.loadBuffer(TensorImage.fromBitmap(image).buffer)
 
-// Runs model inference and gets result.
         val outputs = model.process(inputFeature0)
         val outputFeature0 = outputs.outputFeature0AsTensorBuffer
 
-        var outputResult = getMax(outputFeature0.floatArray).toString()
+        val outputResult = getMax(outputFeature0.floatArray).toString()
 
-// Releases model resources if no longer used.
         model.close()
+
+        return outputResult
     }
 
     private fun getMax(arr: FloatArray): Int {

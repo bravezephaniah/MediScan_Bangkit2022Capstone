@@ -47,4 +47,5 @@
     <string name="sick_desc">Based on our analyzation, your skin feature is not considered as skin cancer, although it might be other skin diseases. We suggest you to contact nearby hospital to get a doctor opinion/medical treatment.</string>
     <string name="cancer_desc">Based on our analyzation, your skin feature is considered as a probable cancer cell. We suggest you to contact nearby hospital to get a medical treatment.</string>
     <string name="not_cancer">Not Cancer</string>
+    <string name="image_null">Pilih gambar terlebih dahulu</string>
 </resources>
