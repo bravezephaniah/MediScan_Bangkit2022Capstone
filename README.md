@@ -21,3 +21,10 @@ MediScan is Skin Cancer Classifier App.
 2. open the **[mediscan.ipynb](https://github.com/bravezephaniah/MediScan_Bangkit2022Capstone/blob/ml-dev/mediscan.ipynb)** on your computer or google colab. Use this link to <a href="https://colab.research.google.com/drive/1K30tqjHngqXYzmmoP5b0L1VjSTUJwdec?usp=sharing" target="_parent"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a>
 4. Upload the dataset and add it on the notebook
 5.  Run the notebook
+
+
+# REFERENCES
+- Shailaja, K., Seetharamulu, B., & Jabbar, M. (2018). Machine Learning in Healthcare: A Review. 2018 Second International Conference On Electronics, Communication And Aerospace Technology (ICECA). doi: 10.1109/iceca.2018.8474918
+- Callahan, A., & Shah, N. H. (2017). Machine learning in Healthcare. Key Advances in Clinical Informatics, 279–291. https://doi.org/10.1016/b978-0-12-809523-2.00019-4 
+- Dai, X., Spasic, I., Meyer, B., Chapman, S., & Andres, F. (2019). Machine learning on Mobile: An on-device inference app for Skin cancer detection. 2019 Fourth International Conference on Fog and Mobile Edge Computing (FMEC). https://doi.org/10.1109/fmec.2019.8795362
+- Jain, S., Singhania, U., Tripathy, B., Nasr, E. A., Aboudaif, M. K., & Kamrani, A. K. (2021). Deep learning-based transfer learning for classification of Skin cancer. Sensors, 21(23), 8142. https://doi.org/10.3390/s21238142
