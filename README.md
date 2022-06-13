@@ -1,5 +1,7 @@
 
-# MediScan 
+#  
+![MediScan](https://github.com/bravezephaniah/MediScan_Bangkit2022Capstone/blob/main/LogoMediScan.png)
+
 
 MediScan is a Skin Cancer Classifier App that offers a solution for high volume - low cost medical screening.
 
